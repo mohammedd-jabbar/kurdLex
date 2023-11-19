@@ -1,0 +1,10 @@
+How to use custom search with google programmable search engine:
+
+1. Open Google Cloud Console and make a new project.
+
+2. Visit https://developers.google.com/custom-search/v1/introduction to generate an API KEY.
+
+3. Find a URL like this: https://www.googleapis.com/customsearch/v1?key=INSERT_YOUR_API_KEY&cx=017576662512468239146:omuauf_lfve&q=lectures at https://developers.google.com/custom-search/v1/using_rest. This is an example for the Programmable Search Engine.
+
+4. Use Postman to get three things: the API key you created, the 'cx' value, and go to https://programmablesearchengine.google.com/controlpanel/all to create a search engine ID. Fill in details like this: set the search engine name as 'google-search,' choose safe search if needed, and in the settings, find the Search Engine ID. Paste it as the 'cx' value. Additionally, use 'q' for the search query, which is what you're looking for.
+
