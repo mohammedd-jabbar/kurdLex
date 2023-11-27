@@ -11,7 +11,7 @@ export const getWordOrigin = (html) => {
     ).text();
 
     if (wordOrigin) {
-      return wordOrigin;
+      return wordOrigin.toString();
     } else {
       // Handle the case when the element is not found
       return "Word origin not available";
@@ -27,12 +27,12 @@ export const getAudio = (document) => {
   try {
     const $ = cheerio.load(document);
     const audioButton = $(".phonetics .sound.audio_play_button.pron-us");
-    const audioUrl = audioButton.attr("data-src-mp3");
+    const audioUrl = audioButton && audioButton.attr("data-src-mp3");
 
-    if (audioUrl) {
-      return audioUrl;
+    if (audioUrl !== undefined) {
+      return audioUrl.toString();
     } else {
-      // Handle the case when the element is not found
+      // Handle the case when the element is not found or attribute is undefined
       return "Word origin not available";
     }
   } catch (error) {
@@ -117,7 +117,6 @@ export const getDefinitions = (document, word) => {
     const classnameDefinition = $(`span[id^='${word}_sngs_']`);
     const definitionSet = Array.from(classnameDefinition).map((element, i) => {
       const index = i + 1; // Adjust index to start from 1
-      console.log(index);
 
       const definition = $(element)
         .find(`li[id^='${word}_sng_${index}'] span.def`)
@@ -142,20 +141,6 @@ export const getDefinitions = (document, word) => {
         example: examples,
       };
     });
-
-    // .map((definition, index) => {
-    //   const topic = $(`h2[id^='${word}_shcut_${index + 1}']`);
-
-    //   const examples = $(
-    //     `li[id^='${word}_sng_${index + 1}'] ul.examples li span.x`
-    //   ).slice(0, 3);
-
-    //   return {
-    //     topic: topic.length > 0 ? topic.text().trim() : "",
-    //     definition: definition,
-    //     example: examples.length > 0 ? examples.text().trim() : "",
-    //   };
-    // })
 
     if (definitionSet) {
       return { definitionSet };
