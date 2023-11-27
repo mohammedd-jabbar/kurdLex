@@ -116,20 +116,25 @@ export const getDefinitions = (document, word) => {
     const $ = cheerio.load(document);
     const classnameDefinition = $(`span[id^='${word}_sngs_']`);
     const definitionSet = Array.from(classnameDefinition).map((element, i) => {
+      const index = i + 1; // Adjust index to start from 1
+      console.log(index);
+
       const definition = $(element)
-        .find(`li[id^='${word}_sng_'] span.def`)
+        .find(`li[id^='${word}_sng_${index}'] span.def`)
         .text()
         .trim();
 
       const topic = $(element)
-        .find(`h2[id^='${word}_shcut_${i + 1}']`)
+        .find(`h2[id^='${word}_shcut_${index}']`)
         .text()
         .trim();
 
       // Map over the <ul> elements and return as an array
       const examples = Array.from(
-        $(`li[id^='${word}_sng_${i + 1}'] ul.examples li span.x`)
-      ).map((element) => $(element).text().trim());
+        $(`li[id^='${word}_sng_${index}'] ul.examples li span.x`)
+      )
+        .slice(0, 4)
+        .map((element) => $(element).text().trim());
 
       return {
         topic: topic,
