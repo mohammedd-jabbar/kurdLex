@@ -15,7 +15,7 @@ export default function Steps() {
             </div>
             <div className="flex-grow md:pl-8 pl-6 flex sm:items-center items-start flex-col sm:flex-row">
               <div className="flex-grow sm:pl-6 mt-6 sm:mt-0">
-                <h2 className="font-medium title-font text-gray-900 mb-1 text-xl">
+                <h2 className="font-semibold title-font text-gray-900 mb-1 text-xl">
                   Shooting Stars
                 </h2>
                 <p className="leading-relaxed">
@@ -34,7 +34,7 @@ export default function Steps() {
             </div>
             <div className="flex-grow md:pl-8 pl-6 flex sm:items-center items-start flex-col sm:flex-row">
               <div className="flex-grow sm:pl-6 mt-6 sm:mt-0">
-                <h2 className="font-medium title-font text-gray-900 mb-1 text-xl">
+                <h2 className="font-semibold title-font text-gray-900 mb-1 text-xl">
                   The Catalyzer
                 </h2>
                 <p className="leading-relaxed">
