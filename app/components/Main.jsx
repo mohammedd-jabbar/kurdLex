@@ -6,6 +6,7 @@ import Dictionary from "./Dictionary";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSubmitState } from "../lib/services/submitSlice";
 import { debounce } from "lodash";
+import { BarLoader } from "react-spinners";
 
 export default function Main() {
   const isSubmitState = useSelector((state) => state.submitState.isSubmitState);
@@ -61,21 +62,33 @@ export default function Main() {
         <div className="font-semibold text-xl md:text-2xl">KurdLex</div>
         <div className="flex items-center mt-1">
           <form onSubmit={handleSubmit}>
-            <input
-              disabled={isSubmitState}
-              value={word}
-              onChange={(e) => setWord(e.target.value)}
-              type="text"
-              placeholder="Search for words"
-              className="outline outline-1 rounded-md p-1 outline-indigo-500 w-full sm:w-64 md:w-96 disabled:text-gray-500"
-            />
-            <button
-              disabled={isSubmitState}
-              type="submit"
-              className="bg-indigo-500 text-white rounded-md p-1 ml-1 disabled:bg-indigo-300"
-            >
-              Search
-            </button>
+            {!isSubmitState ? (
+              <>
+                <input
+                  disabled={isSubmitState}
+                  value={word}
+                  onChange={(e) => setWord(e.target.value)}
+                  type="text"
+                  placeholder="Search for words"
+                  className="outline outline-1 rounded-md p-1 outline-indigo-500 w-full sm:w-64 md:w-96 disabled:text-gray-500"
+                />
+                <button
+                  disabled={isSubmitState}
+                  type="submit"
+                  className="bg-indigo-500 text-white rounded-md p-1 ml-1 disabled:bg-indigo-300"
+                >
+                  Search
+                </button>
+              </>
+            ) : (
+              <BarLoader
+                color="#6366f1"
+                height={5}
+                loading
+                width={100}
+                className="mr-4"
+              />
+            )}
           </form>
         </div>
       </nav>
