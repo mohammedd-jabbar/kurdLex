@@ -62,11 +62,12 @@ export default function Main() {
         <div className="flex items-center mt-1">
           <form onSubmit={handleSubmit}>
             <input
+              disabled={isSubmitState}
               value={word}
               onChange={(e) => setWord(e.target.value)}
               type="text"
               placeholder="Search for words"
-              className="outline outline-1 rounded-md p-1 outline-indigo-500 w-full sm:w-64 md:w-96"
+              className="outline outline-1 rounded-md p-1 outline-indigo-500 w-full sm:w-64 md:w-96 disabled:text-gray-500"
             />
             <button
               disabled={isSubmitState}
