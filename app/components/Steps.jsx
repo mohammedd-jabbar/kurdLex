@@ -14,7 +14,7 @@ export default function Steps() {
   return (
     <div className="flex flex-col sm:flex-row">
       <section className="text-gray-600 body-font">
-        <div className="container px-5 py-24 mx-auto flex flex-wrap">
+        <div className="container px-2 py-24 mx-auto flex flex-wrap">
           <div className="flex relative pt-10 pb-20 sm:items-center md:w-2/3 mx-auto">
             <div className="h-full w-6 absolute inset-0 flex items-center justify-center">
               <div className="h-full w-1 bg-gray-200 pointer-events-none"></div>
@@ -24,18 +24,24 @@ export default function Steps() {
             </div>
             <div className="flex-grow md:pl-8 pl-6 flex sm:items-center items-start flex-col sm:flex-row">
               <div className="flex-grow sm:pl-6 mt-6 sm:mt-0">
-                <div className="flex justify-start items-center mb-2">
-                  <AiOutlineSound
-                    onClick={handleAudioPlay}
-                    className="mr-2 bg-[#6366f1] text-white w-8 h-8 rounded-full p-1 cursor-pointer hover:bg-[#6366f1]/90 focus:scale-110 hover:scale-110 active:scale-105 transition"
-                  />
-                  <h2 className="font-semibold title-font text-gray-900 mb-1 text-2xl">
-                    {data && data.word}
-                  </h2>
-                </div>
+                {data && (
+                  <div className="flex justify-start items-center mb-2">
+                    <AiOutlineSound
+                      onClick={handleAudioPlay}
+                      className="mr-2 bg-[#6366f1] text-white w-8 h-8 rounded-full p-1 cursor-pointer hover:bg-[#6366f1]/90 focus:scale-110 hover:scale-110 active:scale-105 transition"
+                    />
+                    <h2 className="font-semibold title-font text-gray-900 mb-1 text-2xl">
+                      {data.word}
+                    </h2>
+                  </div>
+                )}
                 <p className="text-sm mb-2">{data && data.phon}</p>
                 <p className="leading-relaxed">
                   {data && data.definitions.definitionSet?.[0].definition}
+                </p>
+                <p className="mt-2 ">
+                  {data &&
+                    `"${data.definitions.definitionSet?.[0].example[0]}"`}
                 </p>
               </div>
             </div>
