@@ -1,10 +1,13 @@
-import axios from "axios";
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectDictionaryData } from "../lib/services/dataDictionarySlice";
+import { AiOutlineSound } from "react-icons/ai";
 
 export default function Steps() {
   const data = useSelector((state) => state.dataDictionarySlice.dataDictionary);
+
+  const handleAudioPlay = async () => {
+    new Audio(data.audio).play();
+  };
 
   console.log(data);
 
@@ -21,7 +24,11 @@ export default function Steps() {
             </div>
             <div className="flex-grow md:pl-8 pl-6 flex sm:items-center items-start flex-col sm:flex-row">
               <div className="flex-grow sm:pl-6 mt-6 sm:mt-0">
-                <div className="">
+                <div className="flex justify-start items-center mb-2">
+                  <AiOutlineSound
+                    onClick={handleAudioPlay}
+                    className="mr-2 bg-[#6366f1] text-white w-8 h-8 rounded-full p-1 cursor-pointer hover:bg-[#6366f1]/90 focus:scale-110 hover:scale-110 active:scale-105 transition"
+                  />
                   <h2 className="font-semibold title-font text-gray-900 mb-1 text-2xl">
                     {data && data.word}
                   </h2>
