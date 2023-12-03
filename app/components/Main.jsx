@@ -56,45 +56,43 @@ export default function Main() {
     return true;
   };
 
-  return (
+  return !isSubmitState ? (
     <div>
       <nav className="p-2 shadow-md flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <div className="font-semibold text-xl md:text-2xl">KurdLex</div>
         <div className="flex items-center mt-1">
           <form onSubmit={handleSubmit}>
-            {!isSubmitState ? (
-              <>
-                <input
-                  disabled={isSubmitState}
-                  value={word}
-                  onChange={(e) => setWord(e.target.value)}
-                  type="text"
-                  placeholder="Search for words"
-                  className="outline outline-1 rounded-md p-1 outline-indigo-500 w-full sm:w-64 md:w-96 disabled:text-gray-500"
-                />
-                <button
-                  disabled={isSubmitState}
-                  type="submit"
-                  className="bg-indigo-500 text-white rounded-md p-1 ml-1 disabled:bg-indigo-300"
-                >
-                  Search
-                </button>
-              </>
-            ) : (
-              <BarLoader
-                color="#6366f1"
-                height={5}
-                loading
-                width={100}
-                className="mr-4"
-              />
-            )}
+            <input
+              disabled={isSubmitState}
+              value={word}
+              onChange={(e) => setWord(e.target.value)}
+              type="text"
+              placeholder="Search for words"
+              className="outline outline-1 rounded-md p-1 outline-indigo-500 w-full sm:w-64 md:w-96 disabled:text-gray-500"
+            />
+            <button
+              disabled={isSubmitState}
+              type="submit"
+              className="bg-indigo-500 text-white rounded-md p-1 ml-1 disabled:bg-indigo-300"
+            >
+              Search
+            </button>
           </form>
         </div>
       </nav>
       <Steps />
 
       {isSubmitState ? <Dictionary word={word} /> : <></>}
+    </div>
+  ) : (
+    <div className="flex justify-center items-center w-screen h-screen bg-black bg-opacity-5">
+      <BarLoader
+        color="#6366f1"
+        height={15}
+        loading
+        width={200}
+        className="rounded-xl"
+      />
     </div>
   );
 }
