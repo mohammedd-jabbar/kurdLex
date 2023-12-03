@@ -1,7 +1,13 @@
 import axios from "axios";
 import React from "react";
+import { useSelector } from "react-redux";
+import { selectDictionaryData } from "../lib/services/dataDictionarySlice";
 
 export default function Steps() {
+  const data = useSelector((state) => state.dataDictionarySlice.dataDictionary);
+
+  console.log(data);
+
   return (
     <div className="flex flex-col sm:flex-row">
       <section className="text-gray-600 body-font">
@@ -15,12 +21,14 @@ export default function Steps() {
             </div>
             <div className="flex-grow md:pl-8 pl-6 flex sm:items-center items-start flex-col sm:flex-row">
               <div className="flex-grow sm:pl-6 mt-6 sm:mt-0">
-                <h2 className="font-semibold title-font text-gray-900 mb-1 text-xl">
-                  Shooting Stars
-                </h2>
+                <div className="">
+                  <h2 className="font-semibold title-font text-gray-900 mb-1 text-2xl">
+                    {data && data.word}
+                  </h2>
+                </div>
+                <p className="text-sm mb-2">{data && data.phon}</p>
                 <p className="leading-relaxed">
-                  VHS cornhole pop-up, try-hard 8-bit iceland helvetica. Kinfolk
-                  bespoke try-hard cliche palo santo offal.
+                  {data && data.definitions.definitionSet?.[0].definition}
                 </p>
               </div>
             </div>

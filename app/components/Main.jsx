@@ -56,7 +56,7 @@ export default function Main() {
     return true;
   };
 
-  return !isSubmitState ? (
+  return (
     <div>
       <nav className="p-2 shadow-md flex flex-col sm:flex-row sm:items-center sm:justify-between">
         <div className="font-semibold text-xl md:text-2xl">KurdLex</div>
@@ -80,19 +80,22 @@ export default function Main() {
           </form>
         </div>
       </nav>
-      <Steps />
+      {!isSubmitState ? (
+        <Steps />
+      ) : (
+        <div className="flex flex-col justify-center items-center  h-screen bg-black bg-opacity-5">
+          <h1 className="font-semibold mb-2">Loading, please wait...</h1>
+          <BarLoader
+            color="#6366f1"
+            height={15}
+            loading
+            width={195}
+            className="rounded-xl mb-[8rem] sm:mb-[4rem]"
+          />
+        </div>
+      )}
 
       {isSubmitState ? <Dictionary word={word} /> : <></>}
-    </div>
-  ) : (
-    <div className="flex justify-center items-center w-screen h-screen bg-black bg-opacity-5">
-      <BarLoader
-        color="#6366f1"
-        height={15}
-        loading
-        width={200}
-        className="rounded-xl"
-      />
     </div>
   );
 }

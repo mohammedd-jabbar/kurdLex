@@ -1,24 +1,21 @@
 "use client";
-import React, { useEffect } from "react";
+import React from "react";
 import { useDictionaryQuery } from "../lib/services/dictionaryApi";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSubmitState } from "../lib/services/submitSlice";
+import { setData } from "../lib/services/dataDictionarySlice";
 
 export default function Dictionary({ word }) {
   const isSubmitState = useSelector((state) => state.submitState.isSubmitState);
   const dispatch = useDispatch();
 
   console.log(isSubmitState);
-  const { data, isSuccess, isFetching, isLoading } = useDictionaryQuery(word, {
+  const { data, isSuccess } = useDictionaryQuery(word, {
     skip: !isSubmitState,
   });
 
-  if (isFetching) {
-    console.log("fetching...");
-  } else if (isLoading) {
-    console.log("Loading...");
-  } else if (isSuccess) {
-    console.log(data);
+  if (isSuccess) {
+    dispatch(setData(data));
     dispatch(toggleSubmitState());
   }
 
