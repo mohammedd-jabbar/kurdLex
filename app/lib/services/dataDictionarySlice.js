@@ -10,7 +10,6 @@ export const dataDictionarySlice = createSlice({
   reducers: {
     setData: (state, action) => {
       state.dataDictionary = action.payload;
-      state.isLoading = false;
     },
   },
 });

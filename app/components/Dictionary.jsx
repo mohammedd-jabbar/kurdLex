@@ -9,7 +9,6 @@ export default function Dictionary({ word }) {
   const isSubmitState = useSelector((state) => state.submitState.isSubmitState);
   const dispatch = useDispatch();
 
-  console.log(isSubmitState);
   const { data, isSuccess } = useDictionaryQuery(word, {
     skip: !isSubmitState,
   });
@@ -18,6 +17,4 @@ export default function Dictionary({ word }) {
     dispatch(setData(data));
     dispatch(toggleSubmitState());
   }
-
-  return <div>Dictionary</div>;
 }
