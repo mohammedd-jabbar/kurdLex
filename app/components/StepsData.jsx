@@ -25,10 +25,10 @@ export default function StepsData({ data, i, first = false }) {
           <div>
             {first && <p className="text-sm mb-2">{data && data.phon}</p>}
             <p className="leading-relaxed">
-              {data && data.definitions.definitionSet?.[i].definition}
+              {data && data.definitions?.[i].definition}
             </p>
             <p className="mt-2 ">
-              {data && `"${data.definitions.definitionSet?.[i].example[0]}"`}
+              {data && `"${data.definitions?.[i].example[0]}"`}
             </p>
           </div>
         </>

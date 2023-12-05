@@ -1,7 +1,5 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
-import { Provider } from "react-redux";
-import { store } from "./lib/store";
 import { Providers } from "./Provider";
 
 const poppins = Poppins({
