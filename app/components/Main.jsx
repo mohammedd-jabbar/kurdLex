@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useEffect } from "react";
 import Steps from "./Steps";
 import Dictionary from "./Dictionary";
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +15,23 @@ export default function Main() {
   const dispatch = useDispatch();
 
   const [word, setWord] = React.useState("");
+  const [isNavbarScroll, setIsNavbarScroll] = React.useState(false);
+
   const [isMobile, setIsMobile] = React.useState(false);
+
+  // navbar animation
+  useEffect(() => {
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 60) {
+        setIsNavbarScroll(true);
+      } else {
+        setIsNavbarScroll(false);
+      }
+    });
+    return () => {
+      window.removeEventListener("scroll", () => {});
+    };
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -61,13 +77,6 @@ export default function Main() {
 
   return (
     <div className="max-w-6xl mx-auto">
-      {/* If go down */}
-      <nav className="sticky z-50 top-0 px-2 py-3 flex sm:flex-row items-center justify-between dark:border-white dark:text-white dark:border-white/20">
-        <div className="font-semibold text-xl md:text-2xl">KurdLex</div>
-
-        <ThemeSwitch />
-      </nav>
-
       {!isSubmitState ? (
         <>
           <form
