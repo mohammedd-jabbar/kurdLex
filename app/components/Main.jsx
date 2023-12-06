@@ -6,8 +6,8 @@ import Dictionary from "./Dictionary";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSubmitState } from "../lib/services/submitSlice";
 import { debounce } from "lodash";
-import { BarLoader } from "react-spinners";
 import { RiMenuFill } from "react-icons/ri";
+import Loading from "../assets/Loading";
 
 export default function Main() {
   const isSubmitState = useSelector((state) => state.submitState.isSubmitState);
@@ -87,18 +87,14 @@ export default function Main() {
           className={`sm:hidden w-7 h-7 cursor-pointer font-bold text-3xl`}
         />
       </nav>
-      {!isSubmitState ? (
+      {isSubmitState ? (
         <Steps />
       ) : (
         <div className="flex flex-col justify-center items-center  h-screen bg-black bg-opacity-5">
-          <h1 className="font-semibold mb-2">Loading, please wait...</h1>
-          <BarLoader
-            color="#6366f1"
-            height={15}
-            loading
-            width={195}
-            className="rounded-xl mb-[8rem] sm:mb-[4rem]"
-          />
+          <Loading />
+          <h1 className="font-semibold text-base mt-2">
+            Loading, please wait...
+          </h1>
         </div>
       )}
 
