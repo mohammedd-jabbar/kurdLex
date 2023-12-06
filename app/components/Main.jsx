@@ -7,12 +7,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleSubmitState } from "../lib/services/submitSlice";
 import { debounce } from "lodash";
 import { BarLoader } from "react-spinners";
+import { RiMenuFill } from "react-icons/ri";
 
 export default function Main() {
   const isSubmitState = useSelector((state) => state.submitState.isSubmitState);
   const dispatch = useDispatch();
 
   const [word, setWord] = React.useState("");
+  const [isMobile, setIsMobile] = React.useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -58,9 +60,9 @@ export default function Main() {
 
   return (
     <div>
-      <nav className="p-2 shadow-md flex flex-col sm:flex-row sm:items-center sm:justify-between">
+      <nav className="p-2 shadow-md flex sm:flex-row items-center justify-between">
         <div className="font-semibold text-xl md:text-2xl">KurdLex</div>
-        <div className="flex items-center mt-1">
+        <div className={`hidden sm:flex items-center mt-1`}>
           <form onSubmit={handleSubmit}>
             <input
               disabled={isSubmitState}
@@ -79,6 +81,11 @@ export default function Main() {
             </button>
           </form>
         </div>
+
+        <RiMenuFill
+          onClick={() => setIsMobile(!isMobile)}
+          className={`sm:hidden w-7 h-7 cursor-pointer font-bold text-3xl`}
+        />
       </nav>
       {!isSubmitState ? (
         <Steps />
