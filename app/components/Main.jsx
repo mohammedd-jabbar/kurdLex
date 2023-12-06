@@ -60,8 +60,9 @@ export default function Main() {
   };
 
   return (
-    <div>
-      <nav className="sticky z-50 bg-white top-0 px-2 py-3 shadow-md flex border-b sm:flex-row items-center justify-between dark:bg-gray-800 dark:border-white dark:text-white dark:border-white/20">
+    <div className="max-w-6xl mx-auto">
+      {/* If go down */}
+      <nav className="sticky z-50 top-0 px-2 py-3 flex sm:flex-row items-center justify-between dark:border-white dark:text-white dark:border-white/20">
         <div className="font-semibold text-xl md:text-2xl">KurdLex</div>
 
         <ThemeSwitch />
@@ -69,32 +70,75 @@ export default function Main() {
 
       {!isSubmitState ? (
         <>
-          <form onSubmit={handleSubmit} className="mt-24 ">
-            <h1 className="text-center mb-4 font-bold text-2xl sm:text-4xl">
-              Search For Your Words!
-            </h1>
-            <div className="flex flex-col items-center justify-center">
-              <div className="w-64 sm:w-96 ">
-                <div class="relative w-full min-w-[200px] h-10">
+          <form
+            onSubmit={handleSubmit}
+            className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20"
+          >
+            <div className="max-w-2xl mx-auto sm:max-w-xl md:max-w-2xl">
+              <div className="text-center">
+                <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+                  <div>
+                    <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-400">
+                      Discover Words
+                    </p>
+                  </div>
+                  <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto dark:text-white">
+                    <span className="relative inline-block">
+                      <svg
+                        viewBox="0 0 52 24"
+                        fill="currentColor"
+                        className="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-gray-500 dark:text-blue-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
+                      >
+                        <defs>
+                          <pattern
+                            id="b039bae0-fdd5-4311-b198-8557b064fce0"
+                            x="0"
+                            y="0"
+                            width=".135"
+                            height=".30"
+                          >
+                            <circle cx="1" cy="1" r=".7" />
+                          </pattern>
+                        </defs>
+                        <rect
+                          fill="url(#b039bae0-fdd5-4311-b198-8557b064fce0)"
+                          width="52"
+                          height="24"
+                        />
+                      </svg>
+                      <span className="relative">The</span>
+                    </span>{" "}
+                    Explore a vast collection of words and meanings
+                  </h2>
+                  <p className="text-base text-gray-700 md:text-lg dark:text-white/80">
+                    Unlock the richness of language with our comprehensive
+                    dictionary. Find definitions, synonyms, and more.
+                  </p>
+                </div>
+                <div className="flex flex-col items-center w-full mb-4 md:flex-row md:px-16">
                   <input
                     disabled={isSubmitState}
                     value={word}
                     onChange={(e) => setWord(e.target.value)}
                     type="text"
-                    class="peer w-full h-full bg-transparent text-gray-800 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-gray-50 disabled:border-0 transition-all placeholder-shown:border-[1.5px] placeholder-shown:border-gray-200 placeholder-shown:border-t-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-gray-200 focus:border-gray-900 dark:focus:border-white/30"
-                    placeholder=" "
+                    placeholder="Search For Your Word"
+                    required
+                    className="flex-grow w-full h-12 px-4 mb-3 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none md:mr-2 md:mb-0 focus:border-indigo-400 focus:outline-none focus:shadow-outline dark:bg-black/20"
                   />
-                  <label
-                    class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-gray-500 dark:peer-placeholder-shown:text-gray-900 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-gray-500
-                   dark:peer-disabled:peer-placeholder-shown:text-gray-900 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-gray-200 peer-focus:before:!border-gray-900 after:border-gray-200 peer-focus:after:!border-gray-900  dark:peer-focus:text-white"
+                  <button
+                    type="submit"
+                    className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto bg-indigo-400 focus:shadow-outline focus:outline-none hover:bg-[#6366f1]/90 focus:scale-110 hover:scale-110 active:scale-105 dark:bg-indigo-900"
                   >
                     Search
-                  </label>
+                  </button>
                 </div>
+                <p className="max-w-md mx-auto mb-10 text-xs text-gray-600 sm:text-sm md:mb-16 dark:text-white/50">
+                  Dive into the world of knowledge with our extensive dictionary
+                  entries.
+                </p>
               </div>
             </div>
           </form>
-
           <Steps />
         </>
       ) : (
