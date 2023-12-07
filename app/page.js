@@ -25,7 +25,8 @@ export default function Home() {
       {/* If go down */}
       <header
         className={`sticky z-50 top-0  ${
-          isNavbarScroll && "bg-white shadow-md"
+          isNavbarScroll &&
+          "transition-all duration-300 ease-in-out bg-white shadow-md dark:bg-black bg-opacity-50 backdrop-blur-[3rem] dark:bg-opacity-50 dark:backdrop-blur-[3rem]"
         }`}
       >
         <nav

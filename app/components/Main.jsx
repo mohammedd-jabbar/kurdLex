@@ -6,32 +6,13 @@ import Dictionary from "./Dictionary";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleSubmitState } from "../lib/services/submitSlice";
 import { debounce } from "lodash";
-
 import Loading from "../assets/Loading";
-import ThemeSwitch from "./DarkMode";
 
 export default function Main() {
   const isSubmitState = useSelector((state) => state.submitState.isSubmitState);
   const dispatch = useDispatch();
 
   const [word, setWord] = React.useState("");
-  const [isNavbarScroll, setIsNavbarScroll] = React.useState(false);
-
-  const [isMobile, setIsMobile] = React.useState(false);
-
-  // navbar animation
-  useEffect(() => {
-    window.addEventListener("scroll", () => {
-      if (window.scrollY > 60) {
-        setIsNavbarScroll(true);
-      } else {
-        setIsNavbarScroll(false);
-      }
-    });
-    return () => {
-      window.removeEventListener("scroll", () => {});
-    };
-  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
