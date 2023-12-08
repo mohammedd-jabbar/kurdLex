@@ -1,12 +1,21 @@
+"use client";
+
 import React from "react";
 import { useSelector } from "react-redux";
 import StepsData from "./StepsData";
 import { CgSearchLoading } from "react-icons/cg";
+import { useRouter } from "next/navigation";
 
 export default function Steps() {
+  const router = useRouter();
   const data = useSelector((state) => state.dataDictionarySlice.dataDictionary);
 
   const numberOfDefinitions = data?.definitions.length;
+
+  // go to #dictionary
+  if (data) {
+    router.push("#dictionary");
+  }
 
   // Determine the number of steps to render (max 3)
   const numberOfSteps = Math.min(numberOfDefinitions, 3);
@@ -61,7 +70,7 @@ export default function Steps() {
             </div>
           </section>
         </div>
-        <hr className="w-[80%] mb-6 mx-auto h-[1px] bg-gray-300 dark:bg-white/40 border-none" />
+        {/* <hr className="w-[80%] mb-6 mx-auto h-[1px] bg-gray-300 dark:bg-white/40 border-none" /> */}
 
         {/* Word Origin */}
         <div className="flex w-[80%] mx-auto mb-10 space-x-8">

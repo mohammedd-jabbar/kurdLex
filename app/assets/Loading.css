@@ -1,5 +1,16 @@
+html.dark {
+  .book {
+    --color: rgb(163, 164, 177);
+    --duration: 6.8s;
+    width: 32px;
+    height: 12px;
+    position: relative;
+    margin: 32px 0 0 0;
+    zoom: 1.5;
+  }
+}
 .book {
-  --color: rgb(99 102 241);
+  --color: rgb(211, 211, 215);
   --duration: 6.8s;
   width: 32px;
   height: 12px;
