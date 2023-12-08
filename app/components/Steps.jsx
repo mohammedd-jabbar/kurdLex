@@ -12,7 +12,7 @@ export default function Steps() {
   const numberOfSteps = Math.min(numberOfDefinitions, 3);
   return (
     data && (
-      <div className="flex flex-col sm:flex-row">
+      <div className="flex flex-col sm:flex-row" id="dictionary">
         <section className="text-gray-600 body-font" dir="ltr">
           <div className="container px-2 py-24 mx-auto flex flex-wrap">
             {Array.from({ length: numberOfSteps }, (_, index) => (
