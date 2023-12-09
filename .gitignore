@@ -31,7 +31,8 @@ yarn-error.log*
 
 # vercel
 .vercel
-kurdlex-6a407c262c5e.json
+kurdlex-service.json
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
