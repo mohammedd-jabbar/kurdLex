@@ -1,3 +1,10 @@
+/* Import the rabar font */
+@font-face {
+  font-family: "rabar";
+  src: url("./assets/Rabar_021.ttf") format("woff");
+  font-weight: regular;
+}
+
 @tailwind base;
 
 html {
