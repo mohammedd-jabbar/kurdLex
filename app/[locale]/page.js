@@ -33,9 +33,14 @@ export default function Home({ params: { lang } }) {
         <nav
           className={`max-w-6xl mx-auto px-2 py-3 flex sm:flex-row items-center justify-between dark:border-white dark:text-white dark:border-white/20 `}
         >
-          <div className="font-semibold text-xl md:text-2xl">KurdLex</div>
+          <div className="font-semibold text-xl md:text-2xl">
+            <a href="/">KurdLex</a>
+          </div>
 
-          <ThemeSwitch />
+          <div className="flex items-center justify-between space-x-6">
+            <ThemeSwitch />
+            <LanguageSwitcher />
+          </div>
         </nav>
       </header>
       <Main />

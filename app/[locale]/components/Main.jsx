@@ -6,11 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleSubmitState } from "../../lib/services/submitSlice";
 import { debounce } from "lodash";
 import Loading from "../assets/Loading";
+import { useLocale } from "next-intl";
 
 export default function Main() {
   const isSubmitState = useSelector((state) => state.submitState.isSubmitState);
   const dispatch = useDispatch();
   const t = useTranslations("Index");
+
+  const locale = useLocale();
 
   const [word, setWord] = React.useState("");
 
@@ -57,7 +60,7 @@ export default function Main() {
   };
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto" dir={locale === "en" ? "ltr" : "rtl"}>
       {!isSubmitState ? (
         <>
           <form
@@ -69,15 +72,17 @@ export default function Main() {
                 <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
                   <div>
                     <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-400">
-                      {t("Discover Words")}
+                      {t("Explore Words")}
                     </p>
                   </div>
-                  <h2 className="max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto dark:text-white">
+                  <h2
+                    className={`max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto dark:text-white rtl:font-rabar`}
+                  >
                     <span className="relative inline-block">
                       <svg
                         viewBox="0 0 52 24"
                         fill="currentColor"
-                        className="absolute top-0 left-0 z-0 hidden w-32 -mt-8 -ml-20 text-gray-500 dark:text-blue-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
+                        className="absolute top-0 left-0 z-0 hidden w-32 ltr:-mt-8 rtl:-mt-[2.5rem] ltr:-ml-20 rtl:ml-[5rem] text-gray-500 dark:text-blue-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
                       >
                         <defs>
                           <pattern
@@ -96,13 +101,12 @@ export default function Main() {
                           height="24"
                         />
                       </svg>
-                      <span className="relative">The</span>
+                      <span className="relative">{t("Journey")}</span>
                     </span>{" "}
-                    Explore a vast collection of words and meanings
+                    {t("Through a wide range of words and meanings")}
                   </h2>
                   <p className="text-base text-gray-700 md:text-lg dark:text-white/80">
-                    Unlock the richness of language with our comprehensive
-                    dictionary. Find definitions, synonyms, and more.
+                    {t("Experience")}
                   </p>
                 </div>
                 <div className="flex flex-col items-center w-full mb-4 md:flex-row md:px-16">
@@ -111,20 +115,19 @@ export default function Main() {
                     value={word}
                     onChange={(e) => setWord(e.target.value)}
                     type="text"
-                    placeholder="Search For Your Word"
+                    placeholder={t("Search for")}
                     required
-                    className="flex-grow w-full h-12 px-4 mb-3 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none md:mr-2 md:mb-0 focus:border-indigo-400 focus:outline-none focus:shadow-outline dark:bg-black/20"
+                    className="flex-grow w-full h-12 px-4 mb-3 transition duration-200 bg-white border border-gray-300 rounded shadow-sm appearance-none ltr:md:mr-2 rtl:md:ml-2 md:mb-0 focus:border-indigo-400 focus:outline-none focus:shadow-outline dark:bg-black/20"
                   />
                   <button
                     type="submit"
                     className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto bg-indigo-400 focus:shadow-outline focus:outline-none hover:bg-[#6366f1]/90 focus:scale-110 hover:scale-110 active:scale-105 dark:bg-indigo-900"
                   >
-                    Search
+                    {t("Search")}
                   </button>
                 </div>
                 <p className="max-w-md mx-auto mb-10 text-xs text-gray-600 sm:text-sm md:mb-16 dark:text-white/50">
-                  Dive into the world of knowledge with our extensive dictionary
-                  entries.
+                  {t("Connecting")}
                 </p>
               </div>
             </div>
@@ -134,9 +137,7 @@ export default function Main() {
       ) : (
         <div className="flex flex-col justify-center items-center h-screen -mt-16">
           <Loading />
-          <h1 className="font-semibold text-base mt-2">
-            Loading, please wait...
-          </h1>
+          <h1 className="font-semibold text-base mt-2">{t("loading")}</h1>
         </div>
       )}
 
