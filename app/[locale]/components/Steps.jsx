@@ -86,7 +86,7 @@ export default function Steps() {
                   <>
                     <div className="mt-2">
                       <div className="mb-4">
-                        <h1 className="font-bold mb-1">WORD ORIGIN</h1>
+                        <h1 className="font-bold mb-2">WORD ORIGIN</h1>
                         <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90">
                           {data.wordOrigin}
                         </p>
@@ -104,7 +104,7 @@ export default function Steps() {
                   <>
                     <div className="mt-2">
                       <div className="mb-4">
-                        <h1 className="font-bold mb-1 font-rabar">
+                        <h1 className="font-bold mb-2 font-rabar text-xl">
                           مێژووی وشە
                         </h1>
                         <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90 font-rabar">

@@ -1,9 +1,9 @@
 "use client";
 import React from "react";
-import { useDictionaryQuery } from "../lib/services/dictionaryApi";
+import { useDictionaryQuery } from "../../lib/services/dictionaryApi";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleSubmitState } from "../lib/services/submitSlice";
-import { setData } from "../lib/services/dataDictionarySlice";
+import { toggleSubmitState } from "../../lib/services/submitSlice";
+import { setData } from "../../lib/services/dataDictionarySlice";
 
 export default function Dictionary({ word }) {
   const isSubmitState = useSelector((state) => state.submitState.isSubmitState);

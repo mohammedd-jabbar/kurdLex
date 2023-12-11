@@ -41,7 +41,7 @@ export default function StepsData({ data, i, first = false, ku = false }) {
           <>
             <div className="mt-2">
               <div className="mb-4">
-                <h1 className={`font-bold mb-1 ${ku && "font-rabar"}`}>
+                <h1 className={`font-bold mb-1 ${ku && "font-rabar text-xl"}`}>
                   {ku ? "پێناسە" : "DEFINITION"}
                 </h1>
                 <p
@@ -55,7 +55,7 @@ export default function StepsData({ data, i, first = false, ku = false }) {
                 </p>
               </div>
               <div>
-                <h1 className={`font-bold mb-1 ${ku && "font-rabar"}`}>
+                <h1 className={`font-bold mb-1 ${ku && "font-rabar text-xl"}`}>
                   {ku ? "نموونەکان" : "EXAMPLES"}
                 </h1>
                 <ul className="pl-1.5">

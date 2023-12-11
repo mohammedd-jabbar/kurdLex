@@ -2,8 +2,9 @@
 import React from "react";
 import ThemeSwitch from "./components/DarkMode";
 import Main from "./components/Main";
+import LanguageSwitcher from "./components/LanguageSwitcher";
 
-export default function Home() {
+export default function Home({ params: { lang } }) {
   const [isNavbarScroll, setIsNavbarScroll] = React.useState(false);
 
   // navbar animation
