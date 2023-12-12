@@ -15,7 +15,7 @@ export const metadata = {
 };
 
 // Can be imported from a shared config
-const locales = ["en", "ku"];
+const locales = ["ku", "en"];
 
 export default function RootLayout({ children, params: { locale } }) {
   // Validate that the incoming `locale` parameter is valid

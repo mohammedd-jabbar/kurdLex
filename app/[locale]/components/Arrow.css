@@ -1,0 +1,55 @@
+.down-arrow {
+  margin-left: 10px;
+  position: absolute;
+  /* height of the small screen is 85px, its like margin top */
+  top: calc(100vh - 85px);
+  left: calc(50% - 14px);
+  width: 0;
+  height: 30px;
+  border: #6366f1 2px solid;
+  border-radius: 2px;
+  animation: jumpInfinite 1.4s ease-in-out infinite;
+}
+
+.down-arrow:after {
+  content: " ";
+  position: absolute;
+  top: 13px;
+  left: -8.4px;
+  width: 16px;
+  height: 16px;
+  border-bottom: #6366f1 4px solid;
+  border-right: #6366f1 4px solid;
+  border-radius: 4px;
+  transform: rotateZ(45deg);
+}
+
+@media (min-width: 768px) {
+  /* Styles applied only when the viewport width is at least 768px */
+  .down-arrow {
+    margin-left: 0px;
+    top: calc(100vh - 107px);
+    height: 40px;
+    border: #6366f1 4px solid;
+  }
+  .down-arrow:after {
+    top: 17px;
+    left: -11.5px;
+    width: 23px;
+    height: 23px;
+    border-bottom: #6366f1 7px solid;
+    border-right: #6366f1 7px solid;
+  }
+}
+
+@keyframes jumpInfinite {
+  0% {
+    margin-top: 0;
+  }
+  50% {
+    transform: translateY(25px);
+  }
+  100% {
+    margin-top: 0;
+  }
+}

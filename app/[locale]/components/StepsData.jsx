@@ -1,7 +1,11 @@
 import React from "react";
 import { AiOutlineSound } from "react-icons/ai";
+import { useLocale } from "next-intl";
 
 export default function StepsData({ data, i, first = false, ku = false }) {
+  // get current language
+  const locale = useLocale();
+
   const handleAudioPlay = async () => {
     new Audio(data.audio).play();
   };
@@ -13,12 +17,14 @@ export default function StepsData({ data, i, first = false, ku = false }) {
   return (
     <div className="flex flex-col bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
       {first && data && (
-        <div className="pl-4 pr-2 rtl:pr-4 rtl:pl-2 mt-4">
+        <div className={`${ku ? "pr-4 pl-2" : "pl-4 pr-2"} mt-4`}>
           <div className="flex justify-start items-center mb-2">
-            <AiOutlineSound
-              onClick={handleAudioPlay}
-              className="ltr:mr-3 rtl:ml-3 bg-[#6366f1] text-white dark:text-gray-700 w-10 h-10 rounded-full p-1 cursor-pointer hover:bg-[#6366f1]/90 focus:scale-110 hover:scale-110 active:scale-105 transition rtl:rotate-180"
-            />
+            {!ku && (
+              <AiOutlineSound
+                onClick={handleAudioPlay}
+                className="mr-2 bg-[#6366f1] text-white dark:text-gray-700 w-10 h-10 rounded-full p-1 cursor-pointer hover:bg-[#6366f1]/90 focus:scale-110 hover:scale-110 active:scale-105 transition"
+              />
+            )}
             <h2
               className={`font-bold text-gray-900 dark:text-gray-200 mb-1.5 text-4xl ${
                 ku && "font-rabar"
@@ -36,7 +42,11 @@ export default function StepsData({ data, i, first = false, ku = false }) {
           <hr className="h-[1px] bg-gray-300 dark:bg-white/40 border-none" />
         </div>
       )}
-      <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
+      <div
+        className={`flex-grow ${
+          ku ? "pr-5 pl-2" : "pl-5 pr-2"
+        } mt-6 sm:mt-4 mb-6 dark:text-white`}
+      >
         {data && (
           <>
             <div className="mt-2">

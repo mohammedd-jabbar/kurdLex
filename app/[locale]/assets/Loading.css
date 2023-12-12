@@ -10,7 +10,7 @@ html.dark {
   }
 }
 .book {
-  --color: rgb(211, 211, 215);
+  --color: rgb(238, 238, 251);
   --duration: 6.8s;
   width: 32px;
   height: 12px;

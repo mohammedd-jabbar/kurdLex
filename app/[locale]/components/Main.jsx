@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useTranslations } from "next-intl";
 import Steps from "./Steps";
 import Dictionary from "./Dictionary";
@@ -13,6 +13,7 @@ export default function Main() {
   const dispatch = useDispatch();
   const t = useTranslations("Index");
 
+  // get current language
   const locale = useLocale();
 
   const [word, setWord] = React.useState("");
@@ -76,7 +77,7 @@ export default function Main() {
                     </p>
                   </div>
                   <h2
-                    className={`max-w-lg mb-6 font-sans text-3xl font-bold leading-none tracking-tight text-gray-900 sm:text-4xl md:mx-auto dark:text-white rtl:font-rabar`}
+                    className={`max-w-lg mb-6 font-sans text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl md:mx-auto dark:text-white rtl:font-rabar rtl:leading-8`}
                   >
                     <span className="relative inline-block">
                       <svg
@@ -101,11 +102,13 @@ export default function Main() {
                           height="24"
                         />
                       </svg>
-                      <span className="relative">{t("Journey")}</span>
+                      <span className="relative rtl:leading-8">
+                        {t("Journey")}
+                      </span>
                     </span>{" "}
                     {t("Through a wide range of words and meanings")}
                   </h2>
-                  <p className="text-base text-gray-700 md:text-lg dark:text-white/80">
+                  <p className="text-base text-gray-700 rtl:leading-8 md:text-lg dark:text-white/80">
                     {t("Experience")}
                   </p>
                 </div>
@@ -121,7 +124,7 @@ export default function Main() {
                   />
                   <button
                     type="submit"
-                    className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto bg-indigo-400 focus:shadow-outline focus:outline-none hover:bg-[#6366f1]/90 focus:scale-110 hover:scale-110 active:scale-105 dark:bg-indigo-900"
+                    className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md md:w-auto bg-indigo-400 focus:shadow-outline focus:outline-none hover:scale-110 hover:bg-[#6366f1]/90 focus:scale-110 active:scale-105 dark:bg-indigo-900 border border-white/40"
                   >
                     {t("Search")}
                   </button>
@@ -132,6 +135,7 @@ export default function Main() {
               </div>
             </div>
           </form>
+
           <Steps />
         </>
       ) : (

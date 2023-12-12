@@ -3,9 +3,12 @@ import React from "react";
 import ThemeSwitch from "./components/DarkMode";
 import Main from "./components/Main";
 import LanguageSwitcher from "./components/LanguageSwitcher";
+import { useLocale, useTranslations } from "next-intl";
 
 export default function Home({ params: { lang } }) {
   const [isNavbarScroll, setIsNavbarScroll] = React.useState(false);
+  const t = useTranslations("Index");
+  const locale = useLocale();
 
   // navbar animation
   React.useEffect(() => {
@@ -22,8 +25,7 @@ export default function Home({ params: { lang } }) {
   }, []);
 
   return (
-    <main className="">
-      {/* If go down */}
+    <main className="" dir={locale === "en" ? "ltr" : "rtl"}>
       <header
         className={`sticky z-50 top-0  ${
           isNavbarScroll &&
@@ -34,10 +36,10 @@ export default function Home({ params: { lang } }) {
           className={`max-w-6xl mx-auto px-2 py-3 flex sm:flex-row items-center justify-between dark:border-white dark:text-white dark:border-white/20 `}
         >
           <div className="font-semibold text-xl md:text-2xl">
-            <a href="/">KurdLex</a>
+            <a href="/">{t("KurdLex")}</a>
           </div>
 
-          <div className="flex items-center justify-between space-x-6">
+          <div className="flex items-center justify-between space-x-4 sm:space-x-6 rtl:space-x-reverse">
             <ThemeSwitch />
             <LanguageSwitcher />
           </div>

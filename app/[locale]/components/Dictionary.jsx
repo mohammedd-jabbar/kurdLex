@@ -7,7 +7,6 @@ import { setData } from "../../lib/services/dataDictionarySlice";
 
 export default function Dictionary({ word }) {
   const isSubmitState = useSelector((state) => state.submitState.isSubmitState);
-  console.log(isSubmitState);
   const dispatch = useDispatch();
 
   const { data, isSuccess } = useDictionaryQuery(word, {
@@ -15,7 +14,6 @@ export default function Dictionary({ word }) {
   });
 
   if (isSuccess) {
-    console.log(data);
     dispatch(setData(data));
     dispatch(toggleSubmitState());
   }
