@@ -10,6 +10,8 @@
     "loading": "Word hunt underway... stay tuned!",
     "English": "English",
     "Kurdish": "Kurdish",
-    "KurdLex": "KurdLex"
+    "KurdLex": "KurdLex",
+    "Input empty": "Input cannot be empty",
+    "Input error": "Sorry, something wrong! try again.."
   }
 }

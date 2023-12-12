@@ -7,6 +7,7 @@ import { toggleSubmitState } from "../../lib/services/submitSlice";
 import { debounce } from "lodash";
 import Loading from "../assets/Loading";
 import { useLocale } from "next-intl";
+import { toast } from "sonner";
 
 export default function Main() {
   const isSubmitState = useSelector((state) => state.submitState.isSubmitState);
@@ -24,20 +25,26 @@ export default function Main() {
     debouncedHandleSubmit(inputValue);
   };
 
+  // // Check if the input contains only English letters
+  // if (!/^[a-z]+$/.test(cleanedInput)) {
+  //   console.log("Input should contain only English letters");
+  //   return false;
+  // }
+
   // Debounce the input change
   const debouncedHandleSubmit = debounce((inputValue) => {
     if (isValidInput(inputValue)) {
       setWord(String(inputValue).toLowerCase());
       dispatch(toggleSubmitState());
     } else {
-      console.log("Error");
+      toast.error(t("Input error"));
     }
   }, 1000); // Set an appropriate debounce delay (e.g., 1 second)
 
   const isValidInput = (input) => {
     // Check if the input is not null or undefined
     if (input == null) {
-      console.log("Input cannot be null or undefined");
+      toast.error(t("Input empty"));
       return false;
     }
 
@@ -46,13 +53,7 @@ export default function Main() {
 
     // Check if the input is not an empty string
     if (!cleanedInput.trim()) {
-      console.log("Input cannot be empty");
-      return false;
-    }
-
-    // Check if the input contains only English letters
-    if (!/^[a-z]+$/.test(cleanedInput)) {
-      console.log("Input should contain only English letters");
+      toast.error(t("Input empty"));
       return false;
     }
 
