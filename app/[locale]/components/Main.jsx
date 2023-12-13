@@ -25,12 +25,6 @@ export default function Main() {
     debouncedHandleSubmit(inputValue);
   };
 
-  // // Check if the input contains only English letters
-  // if (!/^[a-z]+$/.test(cleanedInput)) {
-  //   console.log("Input should contain only English letters");
-  //   return false;
-  // }
-
   // Debounce the input change
   const debouncedHandleSubmit = debounce((inputValue) => {
     if (isValidInput(inputValue)) {
