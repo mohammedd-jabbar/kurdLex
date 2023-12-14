@@ -11,7 +11,7 @@ export default function StepsData({ data, i, first = false, ku = false }) {
   const numberOfSteps = Math.min(3, data.definitions?.[i].example.length);
 
   return (
-    <div className="flex flex-col bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
+    <div className="flex flex-col bg-gray-100 transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
       {first && data && (
         <div className={`${ku ? "pr-4 pl-2" : "pl-4 pr-2"} mt-4`}>
           <div className="flex justify-start items-center mb-2">

@@ -58,7 +58,7 @@ export default function Steps() {
           <div className="flex flex-col sm:flex-row" id="dictionary">
             {/* English steps */}
             <section className="text-gray-600 body-font" dir="ltr">
-              <div className="container px-2 py-20 mx-auto flex flex-wrap">
+              <div className="container px-2 py-6 sm:py-20 mx-auto flex flex-wrap">
                 {Array.from({ length: numberOfSteps }, (_, index) => (
                   <div
                     key={index}
@@ -80,7 +80,7 @@ export default function Steps() {
 
             {/* Kurdish steps */}
             <section className="text-gray-600 body-font" dir="rtl">
-              <div className="container px-2 py-20 mx-auto flex flex-wrap">
+              <div className="container px-2 py-6 sm:py-20 mx-auto flex flex-wrap">
                 {Array.from({ length: numberOfSteps }, (_, index) => (
                   <div
                     key={index}
@@ -113,7 +113,7 @@ export default function Steps() {
           {/* Word Origin */}
           <div className="flex flex-col sm:flex-row w-[80%] mx-auto mb-10 max-sm:space-y-6 sm:space-x-8">
             <div className="text-center">
-              <div className="flex flex-col bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
+              <div className="flex flex-col transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
                 <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
                   {(data?.status !== false || data?.status !== 500) && (
                     <>
@@ -131,14 +131,14 @@ export default function Steps() {
               </div>
             </div>
             <div className="text-center">
-              <div className="flex flex-col bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
+              <div className="flex flex-col transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
                 <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
                   {(data?.status !== false || data?.status !== 500) && (
                     <>
                       <div className="mt-2">
                         <div className="mb-4">
                           <h1 className="font-bold mb-2 font-rabar text-xl">
-                            سەرچاوەی وشە
+                            ڕەگی وشە
                           </h1>
                           <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90 font-rabar">
                             {data?.resKu?.wordOrigin}

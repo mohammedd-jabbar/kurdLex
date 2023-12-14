@@ -4,6 +4,7 @@ import ThemeSwitch from "./components/DarkMode";
 import Main from "./components/Main";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import { useLocale, useTranslations } from "next-intl";
+import Footer from "./components/Footer";
 
 export default function Home({ params: { lang } }) {
   const [isNavbarScroll, setIsNavbarScroll] = React.useState(false);
@@ -46,6 +47,7 @@ export default function Home({ params: { lang } }) {
         </nav>
       </header>
       <Main />
+      <Footer />
     </main>
   );
 }
