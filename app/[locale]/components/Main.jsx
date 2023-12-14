@@ -33,7 +33,7 @@ export default function Main() {
     } else {
       toast.error(t("Input error"));
     }
-  }, 1000); // Set an appropriate debounce delay (e.g., 1 second)
+  }, 1000); // Set an appropriate debounce delay (1 second)
 
   const isValidInput = (input) => {
     // Check if the input is not null or undefined

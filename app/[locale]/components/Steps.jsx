@@ -7,6 +7,7 @@ import { CgSearchLoading } from "react-icons/cg";
 import { toast } from "sonner";
 import { useLocale, useTranslations } from "next-intl";
 import "./Arrow.css";
+import { useDictionaryQuery } from "@/app/lib/services/dictionaryApi";
 
 export default function Steps() {
   const t = useTranslations("Index");
@@ -36,8 +37,6 @@ export default function Steps() {
     }
   }, [data, errorDisplayed, locale]);
 
-  console.log(suggestion, data);
-
   const numberOfDefinitions = data?.definitions?.length ?? 0;
 
   // Determine the number of steps to render (max 3)
@@ -52,8 +51,7 @@ export default function Steps() {
         </div>
       </div>
     )) ||
-    data?.status !== false ||
-    (data?.status !== 500 && (
+    (((data && data?.status !== false) || (data && data?.status !== 500)) && (
       <>
         <a class="down-arrow" href="#dictionary"></a>
         <div dir="ltr">
@@ -117,7 +115,7 @@ export default function Steps() {
             <div className="text-center">
               <div className="flex flex-col bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
                 <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
-                  {data && (
+                  {(data?.status !== false || data?.status !== 500) && (
                     <>
                       <div className="mt-2">
                         <div className="mb-4">
@@ -135,7 +133,7 @@ export default function Steps() {
             <div className="text-center">
               <div className="flex flex-col bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
                 <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
-                  {data && (
+                  {(data?.status !== false || data?.status !== 500) && (
                     <>
                       <div className="mt-2">
                         <div className="mb-4">
