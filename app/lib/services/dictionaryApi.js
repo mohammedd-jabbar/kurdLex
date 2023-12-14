@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const dictionaryApi = createApi({
   reducerPath: "dictionaryApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3000",
+    baseUrl: "https://sweet-seahorse-2c570a.netlify.app",
   }),
 
   endpoints: (builder) => ({
