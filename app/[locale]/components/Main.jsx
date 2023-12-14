@@ -72,7 +72,7 @@ export default function Main() {
                     </p>
                   </div>
                   <h2
-                    className={`max-w-lg mb-6 font-sans text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl md:mx-auto dark:text-white rtl:font-rabar rtl:leading-8`}
+                    className={`max-w-lg mb-6 font-sans text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl md:mx-auto dark:text-white rtl:font-rabar rtl:leading-[3rem]`}
                   >
                     <span className="relative inline-block">
                       <svg
@@ -97,13 +97,13 @@ export default function Main() {
                           height="24"
                         />
                       </svg>
-                      <span className="relative rtl:leading-8">
+                      <span className="relative rtl:leading-[3rem]">
                         {t("Journey")}
                       </span>
                     </span>{" "}
                     {t("Through a wide range of words and meanings")}
                   </h2>
-                  <p className="text-base text-gray-700 rtl:leading-8 md:text-lg dark:text-white/80">
+                  <p className="text-base text-gray-700 rtl:leading-[2.1rem] md:text-lg dark:text-white/80">
                     {t("Experience")}
                   </p>
                 </div>

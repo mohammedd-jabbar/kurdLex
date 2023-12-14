@@ -1,30 +1,59 @@
 "use client";
 
-import React from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import StepsData from "./StepsData";
 import { CgSearchLoading } from "react-icons/cg";
-import { useRouter } from "next/navigation";
-import { useLocale } from "next-intl";
+import { toast } from "sonner";
+import { useLocale, useTranslations } from "next-intl";
 import "./Arrow.css";
 
 export default function Steps() {
-  const locale = useLocale();
-  // const router = useRouter();
+  const t = useTranslations("Index");
   const data = useSelector((state) => state.dataDictionarySlice.dataDictionary);
+  const locale = useLocale();
+  const [errorDisplayed, setErrorDisplayed] = useState(false);
+  const [suggestion, setSuggestion] = useState("");
 
-  const numberOfDefinitions = data?.definitions.length;
+  useEffect(() => {
+    if (data?.status === 500 && data.suggestion.length > 0) {
+      setErrorDisplayed(true);
 
-  // go to #dictionary
-  // if (data) {
-  //   router.push("#dictionary");
-  // }
+      if (locale === "en") {
+        toast.error(data.message);
+      } else {
+        toast.error(data.messageKu);
+      }
+      setSuggestion(data.suggestion[0]);
+    } else if (data?.status === false && !errorDisplayed) {
+      setErrorDisplayed(true);
+
+      if (locale === "en") {
+        toast.error(data.message);
+      } else {
+        toast.error(data.messageKu);
+      }
+    }
+  }, [data, errorDisplayed, locale]);
+
+  console.log(suggestion, data);
+
+  const numberOfDefinitions = data?.definitions?.length ?? 0;
 
   // Determine the number of steps to render (max 3)
   const numberOfSteps = Math.min(numberOfDefinitions, 3);
 
   return (
-    data && (
+    (data?.status === 500 && (
+      <div className="flex flex-col justify-center items-center -mt-16">
+        <p className="mb-2">{t("You may")}</p>
+        <div className="transition-all text-center bg-white border border-gray-300 rounded-md px-6 py-3 text-gray-800  w-fit mx-auto cursor-pointer hover:scale-110 focus:scale-110 active:scale-105 dark:bg-white/40 dark:text-white dark:border-gray-600">
+          {suggestion}
+        </div>
+      </div>
+    )) ||
+    data?.status !== false ||
+    (data?.status !== 500 && (
       <>
         <a class="down-arrow" href="#dictionary"></a>
         <div dir="ltr">
@@ -94,7 +123,7 @@ export default function Steps() {
                         <div className="mb-4">
                           <h1 className="font-bold mb-2">WORD ORIGIN</h1>
                           <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90">
-                            {data.wordOrigin}
+                            {data?.wordOrigin}
                           </p>
                         </div>
                       </div>
@@ -114,7 +143,7 @@ export default function Steps() {
                             سەرچاوەی وشە
                           </h1>
                           <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90 font-rabar">
-                            {data.resKu.wordOrigin}
+                            {data?.resKu?.wordOrigin}
                           </p>
                         </div>
                       </div>
@@ -126,6 +155,6 @@ export default function Steps() {
           </div>
         </div>
       </>
-    )
+    ))
   );
 }
