@@ -89,9 +89,7 @@ export default function Steps() {
                     <div className="h-full w-6 absolute inset-0 flex items-center justify-center">
                       <div className="h-full w-1 bg-gray-200 pointer-events-none"></div>
                     </div>
-                    <div className="flex-shrink-0 w-7 h-7 rounded-full mt-10 sm:mt-0 inline-flex items-center justify-center bg-indigo-500 text-white relative z-10 title-font font-medium text-sm">
-                      <CgSearchLoading className="w-[1.15rem] h-[1.15rem]" />
-                    </div>
+                    <div className="flex-shrink-0 w-7 h-7 rounded-full mt-10 sm:mt-0 inline-flex items-center justify-center bg-indigo-500 text-white relative z-10 title-font font-medium text-sm"></div>
                     <div
                       className="flex-grow md:pr-8 pr-6 flex sm:items-center items-start flex-col sm:flex-row"
                       dir="rtl"
@@ -115,38 +113,40 @@ export default function Steps() {
             <div className="text-center">
               <div className="flex flex-col transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
                 <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
-                  {(data?.status !== false || data?.status !== 500) && (
-                    <>
-                      <div className="mt-2">
-                        <div className="mb-4">
-                          <h1 className="font-bold mb-2">WORD ORIGIN</h1>
-                          <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90">
-                            {data?.wordOrigin}
-                          </p>
+                  {(data?.status !== false || data?.status !== 500) &&
+                    data?.wordOrigin && (
+                      <>
+                        <div className="mt-2">
+                          <div className="mb-4">
+                            <h1 className="font-bold mb-2">WORD ORIGIN</h1>
+                            <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90">
+                              {data?.wordOrigin}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    </>
-                  )}
+                      </>
+                    )}
                 </div>
               </div>
             </div>
             <div className="text-center">
               <div className="flex flex-col transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
                 <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
-                  {(data?.status !== false || data?.status !== 500) && (
-                    <>
-                      <div className="mt-2">
-                        <div className="mb-4">
-                          <h1 className="font-bold mb-2 font-rabar text-xl">
-                            ڕەگی وشە
-                          </h1>
-                          <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90 font-rabar">
-                            {data?.resKu?.wordOrigin}
-                          </p>
+                  {(data?.status !== false || data?.status !== 500) &&
+                    data?.wordOrigin && (
+                      <>
+                        <div className="mt-2">
+                          <div className="mb-4">
+                            <h1 className="font-bold mb-2 font-rabar text-xl">
+                              ڕەگی وشە
+                            </h1>
+                            <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90 font-rabar">
+                              {data?.resKu?.wordOrigin}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    </>
-                  )}
+                      </>
+                    )}
                 </div>
               </div>
             </div>
