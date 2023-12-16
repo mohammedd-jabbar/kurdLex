@@ -22,7 +22,7 @@ export default function StepsData({ data, i, first = false, ku = false }) {
               />
             )}
             <h2
-              className={`font-bold text-gray-900 dark:text-gray-200 mb-1.5 text-4xl ${
+              className={`font-bold text-gray-900 dark:text-gray-200 text-4xl ${
                 ku && "font-rabar"
               }`}
             >
