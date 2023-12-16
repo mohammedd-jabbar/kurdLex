@@ -61,6 +61,8 @@ export async function checkEnglishWordIsAvailable(word) {
 async function checkSpelling(word) {
   const __filename = fileURLToPath(import.meta.url);
   const __dirname = dirname(__filename);
+  console.log("__dirname: ", __dirname);
+
   const filePathAFF = path.join(__dirname, "en_US.aff");
   const filePathDIC = path.join(__dirname, "en_US.dic");
 
