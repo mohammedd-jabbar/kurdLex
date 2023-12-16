@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import StepsData from "./StepsData";
 import { CgSearchLoading } from "react-icons/cg";
 import { toast } from "sonner";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import "./Arrow.css";
-import { useDictionaryQuery } from "@/app/lib/services/dictionaryApi";
 
 export default function Steps() {
   const t = useTranslations("Index");
@@ -15,6 +15,16 @@ export default function Steps() {
   const locale = useLocale();
   const [errorDisplayed, setErrorDisplayed] = useState(false);
   const [suggestion, setSuggestion] = useState("");
+
+  const ref = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["0 1", "1.33 1"],
+  });
+
+  const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+  const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
 
   useEffect(() => {
     if (data?.status === 500 && data.suggestion.length > 0) {
@@ -54,7 +64,14 @@ export default function Steps() {
     (((data && data?.status !== false) || (data && data?.status !== 500)) && (
       <>
         <a class="down-arrow" href="#dictionary"></a>
-        <div dir="ltr">
+        <motion.div
+          ref={ref}
+          style={{
+            scale: scaleProgress,
+            opacity: opacityProgress,
+          }}
+          dir="ltr"
+        >
           <div className="flex flex-col sm:flex-row" id="dictionary">
             {/* English steps */}
             <section className="text-gray-600 body-font" dir="ltr">
@@ -109,49 +126,52 @@ export default function Steps() {
           {/* <hr className="w-[80%] mb-6 mx-auto h-[1px] bg-gray-300 dark:bg-white/40 border-none" /> */}
 
           {/* Word Origin */}
-          <div className="flex flex-col sm:flex-row w-[80%] mx-auto mb-10 max-sm:space-y-6 sm:space-x-8">
-            <div className="text-center">
-              <div className="flex flex-col transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
-                <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
-                  {(data?.status !== false || data?.status !== 500) &&
-                    data?.wordOrigin && (
-                      <>
-                        <div className="mt-2">
-                          <div className="mb-4">
-                            <h1 className="font-bold mb-2">WORD ORIGIN</h1>
-                            <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90">
-                              {data?.wordOrigin}
-                            </p>
-                          </div>
-                        </div>
-                      </>
-                    )}
+          {(data?.status !== false || data?.status !== 500) &&
+            data?.wordOrigin && (
+              <div className="flex flex-col sm:flex-row w-[80%] mx-auto mb-10 max-sm:space-y-6 sm:space-x-8">
+                <div className="text-center">
+                  <div className="flex flex-col transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
+                    <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
+                      {(data?.status !== false || data?.status !== 500) &&
+                        data?.wordOrigin && (
+                          <>
+                            <div className="mt-2">
+                              <div className="mb-4">
+                                <h1 className="font-bold mb-2">WORD ORIGIN</h1>
+                                <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90">
+                                  {data?.wordOrigin}
+                                </p>
+                              </div>
+                            </div>
+                          </>
+                        )}
+                    </div>
+                  </div>
+                </div>
+                <div className="text-center">
+                  <div className="flex flex-col transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
+                    <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
+                      {(data?.status !== false || data?.status !== 500) &&
+                        data?.wordOrigin && (
+                          <>
+                            <div className="mt-2">
+                              <div className="mb-4">
+                                <h1 className="font-bold mb-2 font-rabar text-xl">
+                                  ڕەگی وشە
+                                </h1>
+                                <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90 font-rabar">
+                                  {data?.resKu?.wordOrigin}
+                                </p>
+                              </div>
+                            </div>
+                          </>
+                        )}
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="text-center">
-              <div className="flex flex-col transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
-                <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
-                  {(data?.status !== false || data?.status !== 500) &&
-                    data?.wordOrigin && (
-                      <>
-                        <div className="mt-2">
-                          <div className="mb-4">
-                            <h1 className="font-bold mb-2 font-rabar text-xl">
-                              ڕەگی وشە
-                            </h1>
-                            <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90 font-rabar">
-                              {data?.resKu?.wordOrigin}
-                            </p>
-                          </div>
-                        </div>
-                      </>
-                    )}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+            )}
+        </motion.div>
       </>
     ))
   );
