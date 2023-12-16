@@ -59,11 +59,8 @@ export async function checkEnglishWordIsAvailable(word) {
 
 // Helper function to check if the word is a English word
 async function checkSpelling(word) {
-  const folderPath = __dirname;
-  // Read the contents of the directory
-  const files = fs.readdirSync(folderPath);
-  console.log("Path: ", folderPath, "Files in the directory: ", files);
-
+  const __filename = fileURLToPath(import.meta.url);
+  const __dirname = dirname(__filename);
   const filePathAFF = path.join(__dirname, "en_US.aff");
   const filePathDIC = path.join(__dirname, "en_US.dic");
 
