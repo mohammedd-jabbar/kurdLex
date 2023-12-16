@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^1.9.7",
     "axios": "^1.6.2",
     "cheerio": "^1.0.0-rc.12",
+    "chrome-aws-lambda": "^10.1.0",
     "dom-parser": "^1.1.5",
     "google-auth-library": "^9.4.1",
     "hunspell-spellchecker": "^1.0.2",
