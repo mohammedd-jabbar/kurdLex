@@ -43,21 +43,6 @@ export default function Steps() {
   // Determine the number of steps to render (max 3)
   const numberOfSteps = Math.min(numberOfDefinitions, 3);
 
-  const animationFn = () => {
-    if (isKu) {
-      return {
-        x: ["100%", 0],
-        opacity: [0, 1],
-        transition: { ease: "easeOut", duration: 0.3 },
-      };
-    }
-    return {
-      x: ["-100%", 0],
-      opacity: [0, 1],
-      transition: { ease: "easeOut", duration: 0.3 },
-    };
-  };
-
   return (
     (data?.status === 500 && (
       <div className="flex flex-col justify-center items-center -mt-16">
@@ -71,8 +56,10 @@ export default function Steps() {
       <>
         <a class="down-arrow" href="#dictionary"></a>
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={animationFn}
+          initial={
+            isKu ? { x: "100%", opacity: 0 } : { x: "-100%", opacity: 0 }
+          }
+          animate={{ x: 0 }}
           onMount={(el) => el.animate(false)}
           dir="ltr"
         >
