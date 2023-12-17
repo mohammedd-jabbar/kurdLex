@@ -61,7 +61,7 @@ export default function Home({ params: { lang } }) {
                 type: "spring",
                 duration: 4,
                 bounce: 0.7,
-                delay: 1.7,
+                delay: 1.3,
               }}
             >
               <LanguageSwitcher />
