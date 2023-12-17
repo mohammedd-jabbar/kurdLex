@@ -55,17 +55,16 @@ export default function Steps() {
     (((data && data?.status !== false) || (data && data?.status !== 500)) && (
       <>
         <a class="down-arrow" href="#dictionary"></a>
-        <motion.div
-          initial={
-            isKu ? { x: "100%", opacity: 0 } : { x: "-100%", opacity: 0 }
-          }
-          animate={{ x: 0 }}
-          onMount={(el) => el.animate(false)}
-          dir="ltr"
-        >
+        <div dir="ltr">
           <div className="flex flex-col sm:flex-row" id="dictionary">
             {/* English steps */}
-            <section className="text-gray-600 body-font" dir="ltr">
+            <motion.section
+              initial={{ x: "100%", opacity: 0 }}
+              animate={{ x: 0 }}
+              onMount={(el) => el.animate(false)}
+              className="text-gray-600 body-font"
+              dir="ltr"
+            >
               <div className="container px-2 py-6 sm:py-20 mx-auto flex flex-wrap">
                 {Array.from({ length: numberOfSteps }, (_, index) => (
                   <div
@@ -84,10 +83,16 @@ export default function Steps() {
                   </div>
                 ))}
               </div>
-            </section>
+            </motion.section>
 
             {/* Kurdish steps */}
-            <section className="text-gray-600 body-font" dir="rtl">
+            <motion.section
+              initial={{ x: "-100%", opacity: 0 }}
+              animate={{ x: 0 }}
+              onMount={(el) => el.animate(false)}
+              className="text-gray-600 body-font"
+              dir="rtl"
+            >
               <div className="container px-2 py-6 sm:py-20 mx-auto flex flex-wrap">
                 {Array.from({ length: numberOfSteps }, (_, index) => (
                   <div
@@ -112,7 +117,7 @@ export default function Steps() {
                   </div>
                 ))}
               </div>
-            </section>
+            </motion.section>
           </div>
           {/* <hr className="w-[80%] mb-6 mx-auto h-[1px] bg-gray-300 dark:bg-white/40 border-none" /> */}
 
@@ -162,7 +167,7 @@ export default function Steps() {
                 </div>
               </div>
             )}
-        </motion.div>
+        </div>
       </>
     ))
   );
