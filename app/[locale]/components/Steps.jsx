@@ -60,8 +60,11 @@ export default function Steps() {
             {/* English steps */}
             <motion.section
               initial={{ x: "100%", opacity: 0 }}
-              animate={{ x: 0 }}
-              onMount={(el) => el.animate(false)}
+              animate={{ x: 0, opacity: 1, transition: { delay: 0.05 } }}
+              whileInView="animate"
+              viewport={{
+                once: true,
+              }}
               className="text-gray-600 body-font"
               dir="ltr"
             >
@@ -88,8 +91,11 @@ export default function Steps() {
             {/* Kurdish steps */}
             <motion.section
               initial={{ x: "-100%", opacity: 0 }}
-              animate={{ x: 0 }}
-              onMount={(el) => el.animate(false)}
+              animate={{ x: 0, opacity: 1, transition: { delay: 0.05 } }}
+              whileInView="animate"
+              viewport={{
+                once: true,
+              }}
               className="text-gray-600 body-font"
               dir="rtl"
             >
