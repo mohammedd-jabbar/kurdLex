@@ -59,9 +59,9 @@ export default function Home({ params: { lang } }) {
               animate={{ y: 0, opacity: 1, rotate: 360 }}
               transition={{
                 type: "spring",
-                duration: 4,
-                bounce: 0.7,
-                delay: 1.3,
+                duration: 3.5,
+                bounce: 0.6,
+                delay: 1.4,
               }}
             >
               <LanguageSwitcher />
