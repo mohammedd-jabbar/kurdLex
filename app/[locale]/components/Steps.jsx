@@ -43,8 +43,7 @@ export default function Steps() {
   // Determine the number of steps to render (max 3)
   const numberOfSteps = Math.min(numberOfDefinitions, 3);
 
-  const animationFn = (el) => {
-    const isKu = el.lang === "ku";
+  const animationFn = () => {
     if (isKu) {
       return {
         x: ["100%", 0],
