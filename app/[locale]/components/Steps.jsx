@@ -59,8 +59,8 @@ export default function Steps() {
           <div className="flex flex-col sm:flex-row" id="dictionary">
             {/* English steps */}
             <motion.section
-              initial={{ x: "100%", opacity: 0 }}
-              animate={{ x: 0, opacity: 1, transition: { delay: 0.05 } }}
+              initial={{ opacity: 0, x: 100 }}
+              animate={{ opacity: 1, x: 0, transition: { delay: 0.05 } }}
               whileInView="animate"
               viewport={{
                 once: true,
@@ -90,8 +90,8 @@ export default function Steps() {
 
             {/* Kurdish steps */}
             <motion.section
-              initial={{ x: "-100%", opacity: 0 }}
-              animate={{ x: 0, opacity: 1, transition: { delay: 0.05 } }}
+              initial={{ opacity: 0, x: -100 }}
+              animate={{ opacity: 1, x: 0, transition: { delay: 0.05 } }}
               whileInView="animate"
               viewport={{
                 once: true,
