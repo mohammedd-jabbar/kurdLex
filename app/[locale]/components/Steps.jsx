@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import StepsData from "./StepsData";
 import { CgSearchLoading } from "react-icons/cg";
 import { toast } from "sonner";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import "./Arrow.css";
 
@@ -15,16 +15,7 @@ export default function Steps() {
   const locale = useLocale();
   const [errorDisplayed, setErrorDisplayed] = useState(false);
   const [suggestion, setSuggestion] = useState("");
-
-  const ref = useRef(null);
-
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["0 1", "1.33 1"],
-  });
-
-  const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
-  const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
+  const isKu = document.documentElement.lang === "ku";
 
   useEffect(() => {
     if (data?.status === 500 && data.suggestion.length > 0) {
@@ -52,6 +43,22 @@ export default function Steps() {
   // Determine the number of steps to render (max 3)
   const numberOfSteps = Math.min(numberOfDefinitions, 3);
 
+  const animationFn = (el) => {
+    const isKu = el.lang === "ku";
+    if (isKu) {
+      return {
+        x: ["100%", 0],
+        opacity: [0, 1],
+        transition: { ease: "easeOut", duration: 0.3 },
+      };
+    }
+    return {
+      x: ["-100%", 0],
+      opacity: [0, 1],
+      transition: { ease: "easeOut", duration: 0.3 },
+    };
+  };
+
   return (
     (data?.status === 500 && (
       <div className="flex flex-col justify-center items-center -mt-16">
@@ -65,11 +72,9 @@ export default function Steps() {
       <>
         <a class="down-arrow" href="#dictionary"></a>
         <motion.div
-          ref={ref}
-          style={{
-            scale: scaleProgress,
-            opacity: opacityProgress,
-          }}
+          initial={{ opacity: 0 }}
+          animate={animationFn}
+          onMount={(el) => el.animate(false)}
           dir="ltr"
         >
           <div className="flex flex-col sm:flex-row" id="dictionary">
