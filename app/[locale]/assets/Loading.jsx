@@ -1,9 +1,18 @@
 import React from "react";
 import "./Loading.css";
+import { motion } from "framer-motion";
 
 export default function Loading() {
   return (
-    <div class="book">
+    <motion.div
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{
+        type: "spring",
+        delay: 1,
+      }}
+      class="book"
+    >
       <div class="inner">
         <div class="left"></div>
         <div class="middle"></div>
@@ -29,6 +38,6 @@ export default function Loading() {
         <li></li>
         <li></li>
       </ul>
-    </div>
+    </motion.div>
   );
 }

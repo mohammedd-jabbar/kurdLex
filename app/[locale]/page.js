@@ -5,6 +5,7 @@ import Main from "./components/Main";
 import LanguageSwitcher from "./components/LanguageSwitcher";
 import { useLocale, useTranslations } from "next-intl";
 import Footer from "./components/Footer";
+import { motion } from "framer-motion";
 
 export default function Home({ params: { lang } }) {
   const [isNavbarScroll, setIsNavbarScroll] = React.useState(false);
@@ -36,13 +37,35 @@ export default function Home({ params: { lang } }) {
         <nav
           className={`max-w-6xl mx-auto px-2 py-3 flex sm:flex-row items-center justify-between dark:border-white dark:text-white dark:border-white/20 `}
         >
-          <div className="font-semibold text-xl md:text-2xl">
+          <motion.div
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ type: "spring", stiffness: 145, delay: 0.6 }}
+            className="font-semibold text-xl md:text-2xl"
+          >
             <a href="/">{t("KurdLex")}</a>
-          </div>
+          </motion.div>
 
           <div className="flex items-center justify-between space-x-4 sm:space-x-6 rtl:space-x-reverse">
-            <ThemeSwitch />
-            <LanguageSwitcher />
+            <motion.div
+              initial={{ y: -100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ type: "spring", stiffness: 145, delay: 0.6 }}
+            >
+              <ThemeSwitch />
+            </motion.div>
+            <motion.div
+              initial={{ y: -100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1, rotate: 360 }}
+              transition={{
+                type: "spring",
+                duration: 4,
+                bounce: 0.7,
+                delay: 1.7,
+              }}
+            >
+              <LanguageSwitcher />
+            </motion.div>
           </div>
         </nav>
       </header>

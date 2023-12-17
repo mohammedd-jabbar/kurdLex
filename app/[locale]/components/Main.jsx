@@ -8,6 +8,7 @@ import { debounce } from "lodash";
 import Loading from "../assets/Loading";
 import { useLocale } from "next-intl";
 import { toast } from "sonner";
+import { motion } from "framer-motion";
 
 export default function Main() {
   const isSubmitState = useSelector((state) => state.submitState.isSubmitState);
@@ -66,12 +67,26 @@ export default function Main() {
             <div className="max-w-2xl mx-auto sm:max-w-xl md:max-w-2xl">
               <div className="text-center">
                 <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-                  <div>
+                  <motion.div
+                    initial={{ opacity: 0, y: 100 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      type: "spring",
+                      stiffness: 160,
+                      delay: 0.6,
+                    }}
+                  >
                     <p className="inline-block px-3 py-px mb-4 text-xs font-semibold tracking-wider text-teal-900 uppercase rounded-full bg-teal-400">
                       {t("Explore Words")}
                     </p>
-                  </div>
-                  <h2
+                  </motion.div>
+                  <motion.h2
+                    initial={{ opacity: 0, y: 100 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      type: "keyframes",
+                      stiffness: 160,
+                    }}
                     className={`max-w-lg mb-6 font-sans text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl md:mx-auto dark:text-white rtl:font-rabar rtl:leading-[3rem]`}
                   >
                     <span className="relative inline-block">
@@ -102,12 +117,28 @@ export default function Main() {
                       </span>
                     </span>{" "}
                     {t("Through a wide range of words and meanings")}
-                  </h2>
-                  <p className="text-base text-gray-700 rtl:leading-[2.1rem] md:text-lg dark:text-white/80">
+                  </motion.h2>
+                  <motion.p
+                    initial={{ opacity: 0, y: 100 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{
+                      type: "keyframes",
+                      stiffness: 160,
+                    }}
+                    className="text-base text-gray-700 rtl:leading-[2.1rem] md:text-lg dark:text-white/80"
+                  >
                     {t("Experience")}
-                  </p>
+                  </motion.p>
                 </div>
-                <div className="flex flex-col items-center w-full mb-4 md:flex-row md:px-16">
+                <motion.div
+                  initial={{ opacity: 0, y: 100 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    type: "keyframes",
+                    stiffness: 160,
+                  }}
+                  className="flex flex-col items-center w-full mb-4 md:flex-row md:px-16"
+                >
                   <input
                     disabled={isSubmitState}
                     value={word}
@@ -123,10 +154,18 @@ export default function Main() {
                   >
                     {t("Search")}
                   </button>
-                </div>
-                <p className="max-w-md mx-auto mb-10 text-xs text-gray-600 sm:text-sm md:mb-16 dark:text-white/50">
+                </motion.div>
+                <motion.p
+                  initial={{ opacity: 0, y: 100 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    type: "keyframes",
+                    stiffness: 160,
+                  }}
+                  className="max-w-md mx-auto mb-10 text-xs text-gray-600 sm:text-sm md:mb-16 dark:text-white/50"
+                >
                   {t("Connecting")}
-                </p>
+                </motion.p>
               </div>
             </div>
           </form>

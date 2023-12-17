@@ -1,11 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import StepsData from "./StepsData";
 import { CgSearchLoading } from "react-icons/cg";
 import { toast } from "sonner";
-import { motion } from "framer-motion";
+import { useInView } from "framer-motion";
 import { useLocale, useTranslations } from "next-intl";
 import "./Arrow.css";
 
@@ -15,7 +15,9 @@ export default function Steps() {
   const locale = useLocale();
   const [errorDisplayed, setErrorDisplayed] = useState(false);
   const [suggestion, setSuggestion] = useState("");
-  const isKu = document.documentElement.lang === "ku";
+
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (data?.status === 500 && data.suggestion.length > 0) {
@@ -58,16 +60,7 @@ export default function Steps() {
         <div dir="ltr">
           <div className="flex flex-col sm:flex-row" id="dictionary">
             {/* English steps */}
-            <motion.section
-              initial={{ opacity: 0, x: 100 }}
-              animate={{ opacity: 1, x: 0, transition: { delay: 0.05 } }}
-              whileInView="animate"
-              viewport={{
-                once: true,
-              }}
-              className="text-gray-600 body-font"
-              dir="ltr"
-            >
+            <section className="text-gray-600 body-font" dir="ltr">
               <div className="container px-2 py-6 sm:py-20 mx-auto flex flex-wrap">
                 {Array.from({ length: numberOfSteps }, (_, index) => (
                   <div
@@ -86,19 +79,10 @@ export default function Steps() {
                   </div>
                 ))}
               </div>
-            </motion.section>
+            </section>
 
             {/* Kurdish steps */}
-            <motion.section
-              initial={{ opacity: 0, x: -100 }}
-              animate={{ opacity: 1, x: 0, transition: { delay: 0.05 } }}
-              whileInView="animate"
-              viewport={{
-                once: true,
-              }}
-              className="text-gray-600 body-font"
-              dir="rtl"
-            >
+            <section className="text-gray-600 body-font" dir="rtl">
               <div className="container px-2 py-6 sm:py-20 mx-auto flex flex-wrap">
                 {Array.from({ length: numberOfSteps }, (_, index) => (
                   <div
@@ -123,15 +107,26 @@ export default function Steps() {
                   </div>
                 ))}
               </div>
-            </motion.section>
+            </section>
           </div>
           {/* <hr className="w-[80%] mb-6 mx-auto h-[1px] bg-gray-300 dark:bg-white/40 border-none" /> */}
 
           {/* Word Origin */}
           {(data?.status !== false || data?.status !== 500) &&
             data?.wordOrigin && (
-              <div className="flex flex-col sm:flex-row w-[80%] mx-auto mb-10 max-sm:space-y-6 sm:space-x-8">
-                <div className="text-center">
+              <div
+                ref={ref}
+                className="flex flex-col sm:flex-row w-[80%] mx-auto mb-10 max-sm:space-y-6 sm:space-x-8"
+              >
+                <div
+                  className="text-center"
+                  style={{
+                    transform: isInView ? "none" : "translateX(-200px)",
+                    opacity: isInView ? 1 : 0,
+                    transition:
+                      "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+                  }}
+                >
                   <div className="flex flex-col transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
                     <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
                       {(data?.status !== false || data?.status !== 500) &&
@@ -150,7 +145,15 @@ export default function Steps() {
                     </div>
                   </div>
                 </div>
-                <div className="text-center">
+                <div
+                  className="text-center"
+                  style={{
+                    transform: isInView ? "none" : "translateX(200px)",
+                    opacity: isInView ? 1 : 0,
+                    transition:
+                      "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+                  }}
+                >
                   <div className="flex flex-col transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
                     <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
                       {(data?.status !== false || data?.status !== 500) &&

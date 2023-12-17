@@ -1,17 +1,33 @@
-import React from "react";
+import React, { useRef } from "react";
 import { AiOutlineSound } from "react-icons/ai";
+import { useInView } from "framer-motion";
 
 export default function StepsData({ data, i, first = false, ku = false }) {
   const handleAudioPlay = async () => {
     new Audio(data.audio).play();
   };
 
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
   // Determine the number of steps to display, capped at a maximum of 3
   // It is based on the length of examples for the current definition that we pass to the component (if available)
   const numberOfSteps = Math.min(3, data.definitions?.[i].example.length);
 
   return (
-    <div className="flex flex-col bg-gray-100 transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
+    <div
+      ref={ref}
+      style={{
+        transform: isInView
+          ? "none"
+          : ku
+          ? "translateX(200px)"
+          : "translateX(-200px)",
+        opacity: isInView ? 1 : 0,
+        transition: "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+      }}
+      className="flex flex-col bg-gray-100 transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md"
+    >
       {first && data && (
         <div className={`${ku ? "pr-4 pl-2" : "pl-4 pr-2"} mt-4`}>
           <div className="flex justify-start items-center mb-2">
