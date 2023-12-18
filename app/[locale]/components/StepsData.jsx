@@ -47,7 +47,9 @@ export default function StepsData({ data, i, first = false, ku = false }) {
           </div>
 
           <p className="text-base mb-2 text-gray-800 dark:text-gray-200">
-            {data.phon}
+            {ku
+              ? data?.phon || "شیوازی خوێندەوە بەردەست نییە"
+              : data?.phon || "No phonetics"}
           </p>
 
           {/* Line under first stuff */}
@@ -91,8 +93,10 @@ export default function StepsData({ data, i, first = false, ku = false }) {
                       >
                         <span className={`font-medium`}>{index + 1}.</span>{" "}
                         {ku
-                          ? data.resKu.definitions?.[i].examples[index]
-                          : data.definitions?.[i].example[index]}
+                          ? data?.resKu?.definitions?.[i]?.examples?.[index] ||
+                            "ببوورە هیچ نموونەیەک بەردەست نیە!"
+                          : data?.definitions?.[i]?.example?.[index] ||
+                            "Sorry, no examples available!"}
                       </p>
                     </li>
                   ))}
