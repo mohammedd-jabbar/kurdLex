@@ -21,12 +21,12 @@ html[lang="ku"] {
 @layer utilities {
   @variants responsive {
     /* Hide scrollbar for Chrome, Safari and Opera */
-    .no-scrollbar::-webkit-scrollbar {
+    ::-webkit-scrollbar {
       display: none;
     }
 
     /* Hide scrollbar for IE, Edge and Firefox */
-    .no-scrollbar {
+    html {
       -ms-overflow-style: none; /* IE and Edge */
       scrollbar-width: none; /* Firefox */
     }
@@ -39,17 +39,4 @@ html[lang="ku"] {
     padding-left: theme("spacing.10");
     padding-right: theme("spacing.3");
   }
-}
-
-/* For WebKit browsers (Chrome, Safari) */
-body {
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE/Edge */
-}
-
-/* Hide scrollbar for Chrome, Safari and Opera */
-body::-webkit-scrollbar {
-  width: 0; /* Remove horizontal scrollbar */
-  height: 0; /* Remove vertical scrollbar */
-  display: none;
 }
