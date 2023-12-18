@@ -36,6 +36,7 @@ export default function RootLayout({ children, params: { locale } }) {
           <Toaster
             position="top-center"
             richColors
+            toastOptions={{ duration: 4000 }}
             dir={locale === "en" ? "ltr" : "rtl"}
           />
           <div className="bg-[#a5aee1] absolute top-[-6rem] -z-10 right-[11rem] h-[31.25rem] w-[31.25rem] rounded-full blur-[10rem] sm:w-[68.75rem] dark:bg-[#a29a9a]"></div>

@@ -1,12 +1,12 @@
 "use client";
-
 import { useEffect, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import StepsData from "./StepsData";
 import { CgSearchLoading } from "react-icons/cg";
 import { toast } from "sonner";
 import { useInView } from "framer-motion";
-import { useLocale, useTranslations } from "next-intl";
+import { useLocale } from "next-intl";
+import { useTranslations } from "next-intl";
 import "./Arrow.css";
 
 export default function Steps() {
@@ -14,31 +14,36 @@ export default function Steps() {
   const data = useSelector((state) => state.dataDictionarySlice.dataDictionary);
   const locale = useLocale();
   const [errorDisplayed, setErrorDisplayed] = useState(false);
-  const [suggestion, setSuggestion] = useState("");
 
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
-    if (data?.status === 500 && data.suggestion.length > 0) {
+    if (
+      data?.isWordCorrected?.status === 500 &&
+      data?.isWordCorrected?.spellingMistake
+    ) {
       setErrorDisplayed(true);
 
       if (locale === "en") {
-        toast.error(data.message);
+        toast.error(data?.isWordCorrected?.message);
       } else {
-        toast.error(data.messageKu);
+        toast.error(data?.isWordCorrected?.messageKu);
       }
-      setSuggestion(data.suggestion[0]);
-    } else if (data?.status === false && !errorDisplayed) {
+    } else if (data?.isWordCorrected?.status === false && !errorDisplayed) {
       setErrorDisplayed(true);
 
       if (locale === "en") {
-        toast.error(data.message);
+        toast.error(data?.isWordCorrected?.message);
       } else {
-        toast.error(data.messageKu);
+        toast.error(data?.isWordCorrected?.messageKu);
       }
+    } else if (data?.WordNotFound) {
+      setErrorDisplayed(true);
+
+      toast.error(t("word not found"));
     }
-  }, [data, errorDisplayed, locale]);
+  }, [data, errorDisplayed, locale, t]);
 
   const numberOfDefinitions = data?.definitions?.length ?? 0;
 
@@ -46,15 +51,8 @@ export default function Steps() {
   const numberOfSteps = Math.min(numberOfDefinitions, 3);
 
   return (
-    (data?.status === 500 && (
-      <div className="flex flex-col justify-center items-center -mt-16">
-        <p className="mb-2">{t("You may")}</p>
-        <div className="transition-all text-center bg-white border border-gray-300 rounded-md px-6 py-3 text-gray-800  w-fit mx-auto cursor-pointer hover:scale-110 focus:scale-110 active:scale-105 dark:bg-white/40 dark:text-white dark:border-gray-600">
-          {suggestion}
-        </div>
-      </div>
-    )) ||
-    (((data && data?.status !== false) || (data && data?.status !== 500)) && (
+    data &&
+    data?.status !== false && (
       <>
         <a class="down-arrow" href="#dictionary"></a>
         <div dir="ltr">
@@ -111,73 +109,128 @@ export default function Steps() {
           </div>
           {/* <hr className="w-[80%] mb-6 mx-auto h-[1px] bg-gray-300 dark:bg-white/40 border-none" /> */}
 
-          {/* Word Origin */}
-          {(data?.status !== false || data?.status !== 500) &&
-            data?.wordOrigin && (
+          {/* idioms */}
+          {data?.idioms.length > 0 && (
+            <div
+              ref={ref}
+              className="flex flex-col sm:flex-row w-[80%] mx-auto mb-10 max-sm:space-y-6 sm:space-x-8"
+            >
               <div
-                ref={ref}
-                className="flex flex-col sm:flex-row w-[80%] mx-auto mb-10 max-sm:space-y-6 sm:space-x-8"
+                className="text-center"
+                style={{
+                  transform: isInView ? "none" : "translateX(-200px)",
+                  opacity: isInView ? 1 : 0,
+                  transition: "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+                }}
               >
-                <div
-                  className="text-center"
-                  style={{
-                    transform: isInView ? "none" : "translateX(-200px)",
-                    opacity: isInView ? 1 : 0,
-                    transition:
-                      "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
-                  }}
-                >
-                  <div className="flex flex-col transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
-                    <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
-                      {(data?.status !== false || data?.status !== 500) &&
-                        data?.wordOrigin && (
-                          <>
-                            <div className="mt-2">
-                              <div className="mb-4">
-                                <h1 className="font-bold mb-2">WORD ORIGIN</h1>
-                                <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90">
-                                  {data?.wordOrigin}
-                                </p>
-                              </div>
-                            </div>
-                          </>
-                        )}
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="text-center"
-                  style={{
-                    transform: isInView ? "none" : "translateX(200px)",
-                    opacity: isInView ? 1 : 0,
-                    transition:
-                      "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
-                  }}
-                >
-                  <div className="flex flex-col transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
-                    <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
-                      {(data?.status !== false || data?.status !== 500) &&
-                        data?.wordOrigin && (
-                          <>
-                            <div className="mt-2">
-                              <div className="mb-4">
-                                <h1 className="font-bold mb-2 font-rabar text-xl">
-                                  ڕەگی وشە
-                                </h1>
-                                <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90 font-rabar">
-                                  {data?.resKu?.wordOrigin}
-                                </p>
-                              </div>
-                            </div>
-                          </>
-                        )}
-                    </div>
+                <div className="flex flex-col transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
+                  <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
+                    {data?.wordOrigin && (
+                      <>
+                        <div className="mt-2">
+                          <div className="mb-4">
+                            <h1 className="font-bold mb-2">WORD ORIGIN</h1>
+                            <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90">
+                              {data?.wordOrigin}
+                            </p>
+                          </div>
+                        </div>
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
-            )}
+              <div
+                className="text-center"
+                style={{
+                  transform: isInView ? "none" : "translateX(200px)",
+                  opacity: isInView ? 1 : 0,
+                  transition: "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+                }}
+              >
+                <div className="flex flex-col transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
+                  <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
+                    {data?.wordOrigin && (
+                      <>
+                        <div className="mt-2">
+                          <div className="mb-4">
+                            <h1 className="font-bold mb-2 font-rabar text-xl">
+                              ڕەگی وشە
+                            </h1>
+                            <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90 font-rabar">
+                              {data?.resKu?.wordOrigin}
+                            </p>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+          {/* Word Origin */}
+          {data?.wordOrigin && (
+            <div
+              ref={ref}
+              className="flex flex-col sm:flex-row w-[80%] mx-auto mb-10 max-sm:space-y-6 sm:space-x-8"
+            >
+              <div
+                className="text-center"
+                style={{
+                  transform: isInView ? "none" : "translateX(-200px)",
+                  opacity: isInView ? 1 : 0,
+                  transition: "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+                }}
+              >
+                <div className="flex flex-col transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
+                  <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
+                    {data?.wordOrigin && (
+                      <>
+                        <div className="mt-2">
+                          <div className="mb-4">
+                            <h1 className="font-bold mb-2">WORD ORIGIN</h1>
+                            <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90">
+                              {data?.wordOrigin}
+                            </p>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+              <div
+                className="text-center"
+                style={{
+                  transform: isInView ? "none" : "translateX(200px)",
+                  opacity: isInView ? 1 : 0,
+                  transition: "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+                }}
+              >
+                <div className="flex flex-col transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
+                  <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
+                    {data?.wordOrigin && (
+                      <>
+                        <div className="mt-2">
+                          <div className="mb-4">
+                            <h1 className="font-bold mb-2 font-rabar text-xl">
+                              ڕەگی وشە
+                            </h1>
+                            <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90 font-rabar">
+                              {data?.resKu?.wordOrigin}
+                            </p>
+                          </div>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
         </div>
       </>
-    ))
+    )
   );
 }

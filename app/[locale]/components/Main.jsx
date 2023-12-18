@@ -31,8 +31,6 @@ export default function Main() {
     if (isValidInput(inputValue)) {
       setWord(String(inputValue).toLowerCase());
       dispatch(toggleSubmitState());
-    } else {
-      toast.error(t("Input error"));
     }
   }, 1000); // Set an appropriate debounce delay (1 second)
 
@@ -40,6 +38,21 @@ export default function Main() {
     // Check if the input is not null or undefined
     if (input == null) {
       toast.error(t("Input empty"));
+      return false;
+    }
+
+    if (input.trim() === "") {
+      toast.error(t("Input empty"));
+      return false;
+    }
+    if (/\s/.test(input)) {
+      // one word allowed.
+      toast.error(t("Input one"));
+      return false;
+    }
+    if (/\d/.test(input)) {
+      // Numbers are not allowed.
+      toast.error(t("Input num"));
       return false;
     }
 
