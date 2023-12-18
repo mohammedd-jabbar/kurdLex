@@ -18,6 +18,29 @@ html[lang="ku"] {
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+  @variants responsive {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+      -ms-overflow-style: none; /* IE and Edge */
+      scrollbar-width: none; /* Firefox */
+    }
+  }
+}
+/* fix arrow in select not going to left side while dir is rtl */
+@layer base {
+  :where([dir="rtl"]) select {
+    background-position: left theme("spacing.2") center;
+    padding-left: theme("spacing.10");
+    padding-right: theme("spacing.3");
+  }
+}
+
 /* For WebKit browsers (Chrome, Safari) */
 body {
   scrollbar-width: none; /* Firefox */
