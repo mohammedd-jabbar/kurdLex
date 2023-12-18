@@ -41,7 +41,7 @@ export default function Home({ params: { lang } }) {
             initial={{ y: -100, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ type: "spring", stiffness: 145, delay: 0.6 }}
-            className="font-semibold text-xl md:text-2xl"
+            className="font-semibold text-xl md:text-2xl overflow-x-hidden"
           >
             <a href="/">{t("KurdLex")}</a>
           </motion.div>
@@ -50,11 +50,13 @@ export default function Home({ params: { lang } }) {
             <motion.div
               initial={{ y: -100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
+              className="overflow-x-hidden"
               transition={{ type: "spring", stiffness: 145, delay: 0.6 }}
             >
               <ThemeSwitch />
             </motion.div>
             <motion.div
+              className="overflow-x-hidden"
               initial={{ y: -100, opacity: 0 }}
               animate={{ y: 0, opacity: 1, rotate: 360 }}
               transition={{
