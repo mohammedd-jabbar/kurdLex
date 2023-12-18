@@ -15,6 +15,9 @@ html[lang="ku"] {
   font-family: "rabar", sans-serif;
 }
 
+@tailwind components;
+@tailwind utilities;
+
 /* For WebKit browsers (Chrome, Safari) */
 body {
   scrollbar-width: none; /* Firefox */
@@ -27,6 +30,3 @@ body::-webkit-scrollbar {
   height: 0; /* Remove vertical scrollbar */
   display: none;
 }
-
-@tailwind components;
-@tailwind utilities;
