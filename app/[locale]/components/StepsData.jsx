@@ -24,10 +24,9 @@ export default function StepsData({ data, i, first = false, ku = false }) {
           ? "translateX(200px)"
           : "translateX(-200px)",
         opacity: isInView ? 1 : 0,
-        transition:
-          "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s overflow-x-hidden",
+        transition: "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
       }}
-      className="flex flex-col bg-gray-100 transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md"
+      className="flex flex-col bg-gray-100 transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md overflow-x-hidden"
     >
       {first && data && (
         <div className={`${ku ? "pr-4 pl-2" : "pl-4 pr-2"} mt-4`}>
