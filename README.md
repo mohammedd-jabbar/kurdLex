@@ -9,8 +9,8 @@ KurdLex isn't just your average dictionary - it's a powerful learning tool desig
 ## Index
 
 - [About](#about)
+- [Features](#Features)
 - [Technology Stack](#technology-stack)
-- [Key Features](#key-features)
 - [Installation](#installation)
 - [License](#license)
 
