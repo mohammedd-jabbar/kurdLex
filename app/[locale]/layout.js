@@ -22,12 +22,11 @@ export const metadata = {
     siteName: "Kurdlex",
     images: [
       {
-        url: "../../logo/kurdlex1.png",
+        url: "/logo/kurdlex1.png",
         width: 800,
         height: 600,
       },
     ],
-    locale: "ku",
     type: "website",
   },
 };
