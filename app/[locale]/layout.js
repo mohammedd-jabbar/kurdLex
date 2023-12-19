@@ -17,6 +17,7 @@ export const metadata = {
   icons: {
     icon: "/public/logo/kurdlex5.ico",
   },
+  metadataBase: "https://kurd-lex.vercel.app/",
   openGraph: {
     title: "KurdLex",
     description: `وشەی ئینگلیزی بە کوردی ڕوون کراوەتەوە! وشە و مانا و بنەچە و ئیدیۆم فێربە! کوردلێکس هەڵبژێرە، مامۆستای زمانی ئینگلیزیت بە زمانی کوردی! 
@@ -29,7 +30,7 @@ export const metadata = {
         height: 600,
       },
     ],
-
+    url: "https://kurd-lex.vercel.app/",
     type: "website",
   },
 };
