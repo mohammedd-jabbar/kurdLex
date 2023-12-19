@@ -12,13 +12,15 @@ const poppins = Poppins({
 
 export const metadata = {
   title: "KurdLex",
-  description:
-    "English words explained in Kurdish! Learn words, meanings, origins, and idioms! Choose Kurdlex, your English teacher in Kurdish!",
+  description: `وشەی ئینگلیزی بە کوردی ڕوون کراوەتەوە! وشە و مانا و بنەچە و ئیدیۆم فێربە! کوردلێکس هەڵبژێرە، مامۆستای زمانی ئینگلیزیت بە زمانی کوردی! 
+  English words explained in Kurdish! Learn words, meanings, origins, and idioms! Choose Kurdlex, your English teacher in Kurdish!`,
+  icons: {
+    icon: "/public/logo/kurdlex5.ico",
+  },
   openGraph: {
     title: "KurdLex",
     description: `وشەی ئینگلیزی بە کوردی ڕوون کراوەتەوە! وشە و مانا و بنەچە و ئیدیۆم فێربە! کوردلێکس هەڵبژێرە، مامۆستای زمانی ئینگلیزیت بە زمانی کوردی! 
       English words explained in Kurdish! Learn words, meanings, origins, and idioms! Choose Kurdlex, your English teacher in Kurdish!`,
-    url: "https://nextjs.org",
     siteName: "Kurdlex",
     images: [
       {
