@@ -5,6 +5,7 @@
 KurdLex isn't just your average dictionary - it's a powerful learning tool designed specifically for Kurdish speakers striving to conquer the English language. Forget dry definitions and boring examples; KurdLex brings each word to life.
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/37e4b823-26ce-48c8-8bdf-e0955abcab96/deploy-status)](https://app.netlify.com/sites/stellular-hotteok-8a6ae2/deploys)
 
 ## Index
 
