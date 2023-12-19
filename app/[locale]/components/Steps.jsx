@@ -114,32 +114,15 @@ export default function Steps() {
 
           {/* idioms */}
           {data?.idioms && (
-            <div
-              ref={ref}
-              className="flex flex-col justify-center items-center sm:flex-row w-[80%] mx-auto mb-16 max-sm:space-y-6 sm:space-x-8"
-            >
-              <div
-                className="text-center overflow-hidden w-full sm:w-1/2"
-                style={{
-                  transform: isInView ? "none" : "translateX(-200px)",
-                  opacity: isInView ? 1 : 0,
-                  transition: "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
-                }}
-              >
+            <div className="flex flex-col justify-center items-center sm:flex-row w-[80%] mx-auto mb-16 max-sm:space-y-6 sm:space-x-8">
+              <div className="text-center overflow-hidden overflow-x-hidden w-full sm:w-1/2">
                 <div className="flex flex-col hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
                   <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
                     <Idioms data={data} />
                   </div>
                 </div>
               </div>
-              <div
-                className="text-center overflow-hidden w-full sm:w-1/2"
-                style={{
-                  transform: isInView ? "none" : "translateX(200px)",
-                  opacity: isInView ? 1 : 0,
-                  transition: "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
-                }}
-              >
+              <div className="text-center overflow-hidden overflow-x-hidden w-full sm:w-1/2">
                 <div className="flex flex-col hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
                   <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
                     <Idioms ku={true} data={data} />
@@ -149,18 +132,8 @@ export default function Steps() {
             </div>
           )}
           {/* Word Origin */}
-          <div
-            ref={ref}
-            className="flex flex-col justify-center items-center sm:flex-row w-[80%] mx-auto mb-10 max-sm:space-y-6 sm:space-x-8"
-          >
-            <div
-              className="text-center overflow-hidden w-full sm:w-1/2"
-              style={{
-                transform: isInView ? "none" : "translateX(-200px)",
-                opacity: isInView ? 1 : 0,
-                transition: "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
-              }}
-            >
+          <div className="flex flex-col justify-center items-center sm:flex-row w-[80%] mx-auto mb-10 max-sm:space-y-6 sm:space-x-8">
+            <div className="text-center overflow-hidden overflow-x-hidden w-full sm:w-1/2">
               <div className="flex flex-col hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
                 <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
                   <>
@@ -178,14 +151,7 @@ export default function Steps() {
                 </div>
               </div>
             </div>
-            <div
-              className="text-center overflow-hidden w-full sm:w-1/2"
-              style={{
-                transform: isInView ? "none" : "translateX(200px)",
-                opacity: isInView ? 1 : 0,
-                transition: "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
-              }}
-            >
+            <div className="text-center overflow-hidden overflow-x-hidden w-full sm:w-1/2">
               <div className="flex flex-col hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
                 <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
                   <>
