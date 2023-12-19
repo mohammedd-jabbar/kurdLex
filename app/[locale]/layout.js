@@ -14,9 +14,6 @@ export const metadata = {
   title: "KurdLex",
   description:
     "English words explained in Kurdish! Learn words, meanings, origins, and idioms! Choose Kurdlex, your English teacher in Kurdish!",
-  icons: {
-    icon: "/public/logo/favicon.svg",
-  },
   openGraph: {
     title: "KurdLex",
     description: `وشەی ئینگلیزی بە کوردی ڕوون کراوەتەوە! وشە و مانا و بنەچە و ئیدیۆم فێربە! کوردلێکس هەڵبژێرە، مامۆستای زمانی ئینگلیزیت بە زمانی کوردی! 
@@ -25,7 +22,7 @@ export const metadata = {
     siteName: "Kurdlex",
     images: [
       {
-        url: "/logo/kurdlex1.png",
+        url: "/public/logo/kurdlex5.png",
         width: 800,
         height: 600,
       },
