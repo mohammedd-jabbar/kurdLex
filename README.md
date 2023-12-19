@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<img src="/public/logo/kurdlex5.png" width="200">
 
-## Getting Started
+# KurdLex: Your Gateway to Mastering English through Kurdish
 
-First, run the development server:
+KurdLex isn't just your average dictionary - it's a powerful learning tool designed specifically for Kurdish speakers striving to conquer the English language. Forget dry definitions and boring examples; KurdLex brings each word to life.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Index
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+- [About](#about)
+- [Technology Stack](#technology-stack)
+- [Key Features](#key-features)
+- [Installation](#installation)
+- [License](#license)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## About
 
-## Learn More
+Kurdlex: English fluency with KurdLex, Discover more than just definitions with the help of idioms, origins, examples, and insights derived from Oxford data. KurdLex is a learning tool for Kurdish that unlocks fluency.
 
-To learn more about Next.js, take a look at the following resources:
+## Features
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Masterful Search: Find the perfect word effortlessly with advanced filters and intuitive navigation.
+  <img src="/screenshots/1.png">
+- Access Anywhere: With a responsive design, learn on the move from a PC or a mobile device.
+  <img src="/screenshots/2.png">
+- Easy Reach: Connect directly with the Oxford dictionary for deeper exploration.
+  <img src="/screenshots/3.png">
+- Day & Night Modes: Customize the bright and dark themes to read comfortably.
+  <img src="/screenshots/4.png">
+- Multi-language Support: Enjoy our platform in your preferred language.
+  <img src="/screenshots/5.png">
+- Word Origins Uncovered: Discover the amazing past of every word by going back in time.
+  <img src="/screenshots/6.png">
+- Contextual Brilliance: Unravel the meaning beyond definitions with real-world examples and usage guides.
+  <img src="/screenshots/7.png">
+- Idiomatic Gems: Unlock the idioms' hidden language! Uncover cultural vibes and hidden meanings.
+  <img src="/screenshots/8.png">
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Technology Stack
 
-## Deploy on Vercel
+- Full-stack: Next.js 14
+- Front-end: Next.js for seamless rendering, responsive and user-friendly design.
+- Styling: Modern appearance with Tailwind CSS, using a utility-first approach for efficient styling.
+- Backend: Next.js powers the backend, integrating Cheerio and request-promise for real-time Oxford scraping, ensuring a scalable and efficient infrastructure.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Installation
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+To get started with Kurdlex, follow these steps:
+
+#### Clone the repository:
+
+    git clone https://github.com/mohammed019/kurdLex.git
+
+#### Navigate to the project directory:
+
+    cd kurdlex
+
+#### Install dependencies:
+
+    npm install
+
+#### Set up your environment variables by creating a .env file with the following variables:
+
+    GOOGLE_CLOUD_PROJECT_ID=
+    GOOGLE_CLOUD_PRIVATE_KEY=
+    GOOGLE_CLOUD_CLIENT_EMAIL=
+    GOOGLE_CLOUD_CLIENT_ID=
+
+#### Run the development server:
+
+    npm run dev
+
+Now you're all set! Kurdlex is up and running on your local machine.
+
+## License
+
+This project is licensed under the GPL V3 License.
