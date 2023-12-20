@@ -10,9 +10,13 @@ export default function StepsData({ data, i, first = false, ku = false }) {
       // Cancel any previous speech
       speechSynthesis.cancel();
 
-      const utterance = new SpeechSynthesisUtterance();
+      console.log(speechSynthesis.getVoices());
+      speechSynthesis.getVoices().forEach((voice) => console.log(voice.name));
 
+      const utterance = new SpeechSynthesisUtterance();
       utterance.text = textToRead;
+      // utterance.voice = speechSynthesis.getVoices()[4];
+      utterance.volume = 1; // Full volume
 
       speechSynthesis.speak(utterance);
     } else {

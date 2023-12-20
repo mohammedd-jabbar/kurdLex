@@ -63,7 +63,7 @@ export default function Steps() {
     data &&
     data?.status !== false && (
       <>
-        <a class="down-arrow" href="#dictionary"></a>
+        <a className="down-arrow" href="#dictionary"></a>
         <div dir="ltr">
           <div className="flex flex-col sm:flex-row" id="dictionary">
             {/* English steps */}

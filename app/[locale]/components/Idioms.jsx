@@ -23,7 +23,7 @@ export default function Idioms({ data, ku = false }) {
                 : "Sayings that hide deeper, cultural meanings."}
             </span>
             <svg
-              class="transition-all mb-6 w-5 h-5 ml-1 cursor-pointer hover:text-indigo-500 group-focus:text-indigo-500 group-active:text-indigo-500"
+              className="transition-all mb-6 w-5 h-5 ml-1 cursor-pointer hover:text-indigo-500 group-focus:text-indigo-500 group-active:text-indigo-500"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
