@@ -30,63 +30,29 @@ export default function Idioms({ data, ku = false }) {
               xmlns="http://www.w3.org/2000/svg"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
               ></path>
             </svg>
           </div>
         </div>
         <div className={`${ku ? "text-end" : "text-start"}`}>
-          {ku
-            ? data?.resKu.idioms
-              ? data?.resKu?.idioms.map((idiom, i) => {
-                  // Check if it's the last iteration
-                  const isLastIteration = i === data?.resKu?.idioms.length - 1;
-                  return (
-                    <div key={i} className="mb-6">
-                      <h1 className="text-xl mb-0.5 font-bold">
-                        {idiom?.header}
-                      </h1>
-                      <p
-                        dir="rtl"
-                        className="mb-1 text-start text-base font-normal text-gray-800 dark:text-gray-100"
-                      >
-                        {idiom?.status &&
-                          idiom?.status.split(" ").length <= 3 && (
-                            <span className="text-gray-600 dark:text-gray-300 font-normal text-base">
-                              {`'${idiom?.status}' `}
-                            </span>
-                          )}
-                        {idiom?.meaning}
-                      </p>
-                      {idiom?.example && (
-                        <div className="flex justify-end items-baseline pr-2">
-                          <p className="italic">
-                            {idiom?.example && idiom?.example.includes(".")
-                              ? idiom?.example.replace(/\./g, "")
-                              : idiom?.example}
-                          </p>
-                          <div className="h-[6px] w-[6px] rounded-full bg-white ml-2"></div>
-                        </div>
-                      )}
-                      {!isLastIteration && (
-                        <hr className="w-full mt-2 mb-6 mx-auto h-[1px] bg-gray-300 dark:bg-white/40 border-none" />
-                      )}
-                    </div>
-                  );
-                })
-              : "ببوورە ئیدیۆمەکان بەردەست نین!"
-            : data?.idioms
-            ? data?.idioms.map((idiom, i) => {
-                const isLastIteration = i === data?.idioms.length - 1;
+          {ku ? (
+            data?.resKu.idioms.length > 0 ? (
+              data?.resKu?.idioms.map((idiom, i) => {
+                // Check if it's the last iteration
+                const isLastIteration = i === data?.resKu?.idioms.length - 1;
                 return (
                   <div key={i} className="mb-6">
                     <h1 className="text-xl mb-0.5 font-bold">
                       {idiom?.header}
                     </h1>
-                    <p className="mb-1 text-base font-normal text-gray-800 dark:text-gray-100">
+                    <p
+                      dir="rtl"
+                      className="mb-1 text-start text-base font-normal text-gray-800 dark:text-gray-100"
+                    >
                       {idiom?.status &&
                         idiom?.status.split(" ").length <= 3 && (
                           <span className="text-gray-600 dark:text-gray-300 font-normal text-base">
@@ -96,9 +62,13 @@ export default function Idioms({ data, ku = false }) {
                       {idiom?.meaning}
                     </p>
                     {idiom?.example && (
-                      <div className="flex justify-start items-baseline pl-2">
-                        <div className="h-[6px] w-[6px] rounded-full bg-white mr-2"></div>
-                        <p className="italic">{idiom?.example}</p>
+                      <div className="flex justify-end items-baseline pr-2">
+                        <p className="italic">
+                          {idiom?.example && idiom?.example.includes(".")
+                            ? idiom?.example.replace(/\./g, "")
+                            : idiom?.example}
+                        </p>
+                        <div className="h-[6px] w-[6px] rounded-full bg-white ml-2"></div>
                       </div>
                     )}
                     {!isLastIteration && (
@@ -107,7 +77,40 @@ export default function Idioms({ data, ku = false }) {
                   </div>
                 );
               })
-            : "Sorry, Idioms not available!"}
+            ) : (
+              <p className="text-center text-lg">
+                !ببوورە ئیدیۆمەکان بەردەست نین
+              </p>
+            )
+          ) : data?.idioms.length > 0 ? (
+            data?.idioms.map((idiom, i) => {
+              const isLastIteration = i === data?.idioms.length - 1;
+              return (
+                <div key={i} className="mb-6">
+                  <h1 className="text-xl mb-0.5 font-bold">{idiom?.header}</h1>
+                  <p className="mb-1 text-base font-normal text-gray-800 dark:text-gray-100">
+                    {idiom?.status && idiom?.status.split(" ").length <= 3 && (
+                      <span className="text-gray-600 dark:text-gray-300 font-normal text-base">
+                        {`'${idiom?.status}' `}
+                      </span>
+                    )}
+                    {idiom?.meaning}
+                  </p>
+                  {idiom?.example && (
+                    <div className="flex justify-start items-baseline pl-2">
+                      <div className="h-[6px] w-[6px] rounded-full bg-white mr-2"></div>
+                      <p className="italic">{idiom?.example}</p>
+                    </div>
+                  )}
+                  {!isLastIteration && (
+                    <hr className="w-full mt-2 mb-6 mx-auto h-[1px] bg-gray-300 dark:bg-white/40 border-none" />
+                  )}
+                </div>
+              );
+            })
+          ) : (
+            <p className="text-center text-lg">Sorry, Idioms not available!</p>
+          )}
         </div>
       </div>
     </div>

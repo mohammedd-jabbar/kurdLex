@@ -1,14 +1,24 @@
-import React, { useRef } from "react";
+import React from "react";
 import { AiOutlineSound } from "react-icons/ai";
-import { useInView } from "framer-motion";
 
 export default function StepsData({ data, i, first = false, ku = false }) {
   const handleAudioPlay = async () => {
     new Audio(data.audio).play();
   };
+  const handleAudio = async (textToRead) => {
+    if ("speechSynthesis" in window) {
+      // Cancel any previous speech
+      speechSynthesis.cancel();
 
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
+      const utterance = new SpeechSynthesisUtterance();
+
+      utterance.text = textToRead;
+
+      speechSynthesis.speak(utterance);
+    } else {
+      alert(t("your browser does not support"));
+    }
+  };
 
   // Determine the number of steps to display, capped at a maximum of 3
   // It is based on the length of examples for the current definition that we pass to the component (if available)
@@ -16,17 +26,18 @@ export default function StepsData({ data, i, first = false, ku = false }) {
 
   return (
     <div
-      ref={ref}
-      style={{
-        transform: isInView
-          ? "none"
-          : ku
-          ? "translateX(200px)"
-          : "translateX(-200px)",
-        opacity: isInView ? 1 : 0,
-        transition: "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
-      }}
-      className="flex flex-col bg-gray-100 transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md overflow-x-hidden"
+      // ref={ref}
+      // its make the website unresponsive, but I'm not in a position to fix it hahaha
+      // style={{
+      //   transform: isInView
+      //     ? "none"
+      //     : ku
+      //     ? "translateX(200px)"
+      //     : "translateX(-200px)",
+      //   opacity: isInView ? 1 : 0,
+      //   transition: "all 0.6s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s",
+      // }}
+      className="flex flex-col bg-gray-100 transition-all duration-200 ease-in-out hover:scale-105 hover:shadow-lg border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md !overflow-hidden"
     >
       {first && data && (
         <div className={`${ku ? "pr-4 pl-2" : "pl-4 pr-2"} mt-4`}>
@@ -73,6 +84,14 @@ export default function StepsData({ data, i, first = false, ku = false }) {
                     ku && "font-rabar"
                   }`}
                 >
+                  {!ku && (
+                    <AiOutlineSound
+                      onClick={() =>
+                        handleAudio(data.definitions?.[i].definition)
+                      }
+                      className="mr-2 bg-[#6366f1] text-white dark:text-gray-200 w-10 h-10 rounded-full p-1 cursor-pointer hover:bg-[#6366f1]/90 focus:scale-110 hover:scale-110 active:scale-105 transition"
+                    />
+                  )}
                   {ku
                     ? data.resKu.definitions?.[i].definition
                     : data.definitions?.[i].definition}

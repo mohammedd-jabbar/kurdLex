@@ -39,6 +39,14 @@ export default function Steps() {
       } else {
         toast.error(data?.isWordCorrected?.messageKu);
       }
+    } else if (data?.status === false) {
+      setErrorDisplayed(true);
+
+      if (locale === "en") {
+        toast.error(data?.message);
+      } else {
+        toast.error(data?.messageKu);
+      }
     } else if (data?.WordNotFound) {
       setErrorDisplayed(true);
 
@@ -115,14 +123,14 @@ export default function Steps() {
           {/* idioms */}
           {data?.idioms && (
             <div className="flex flex-col justify-center items-center sm:flex-row w-[80%] mx-auto mb-16 max-sm:space-y-6 sm:space-x-8">
-              <div className="text-center overflow-hidden overflow-x-hidden w-full sm:w-1/2">
+              <div className="text-center overflow-hidden w-full sm:w-1/2">
                 <div className="flex flex-col hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
                   <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
                     <Idioms data={data} />
                   </div>
                 </div>
               </div>
-              <div className="text-center overflow-hidden overflow-x-hidden w-full sm:w-1/2">
+              <div className="text-center overflow-hidden w-full sm:w-1/2">
                 <div className="flex flex-col hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
                   <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
                     <Idioms ku={true} data={data} />
@@ -133,7 +141,7 @@ export default function Steps() {
           )}
           {/* Word Origin */}
           <div className="flex flex-col justify-center items-center sm:flex-row w-[80%] mx-auto mb-10 max-sm:space-y-6 sm:space-x-8">
-            <div className="text-center overflow-hidden overflow-x-hidden w-full sm:w-1/2">
+            <div className="text-center overflow-hidden w-full sm:w-1/2">
               <div className="flex flex-col hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
                 <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
                   <>
@@ -151,7 +159,7 @@ export default function Steps() {
                 </div>
               </div>
             </div>
-            <div className="text-center overflow-hidden overflow-x-hidden w-full sm:w-1/2">
+            <div className="text-center overflow-hidden w-full sm:w-1/2">
               <div className="flex flex-col hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
                 <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
                   <>
@@ -163,7 +171,7 @@ export default function Steps() {
                         <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90 font-rabar">
                           {data?.resKu.wordOrigin
                             ? data?.resKu.wordOrigin
-                            : "ببوورە ڕەگی وشە بەردەست نیە!"}
+                            : "!ببوورە ڕەگی وشە بەردەست نیە"}
                         </p>
                       </div>
                     </div>

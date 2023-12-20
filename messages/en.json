@@ -15,6 +15,7 @@
     "Input empty": "Input cannot be empty",
     "Input error": "Sorry, something wrong! try again..",
     "Input num": "Sorry, Numbers are not allowed! try again..",
+    "your browser does not support": "Sorry, your browser does not support the Web Speech API",
     "word not found": "Sorry! The word was not found in the dictionary.",
     "You may": "You may mean this word: "
   }
