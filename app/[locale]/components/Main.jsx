@@ -106,7 +106,7 @@ export default function Main() {
                       <svg
                         viewBox="0 0 52 24"
                         fill="currentColor"
-                        className="absolute top-0 left-0 z-0 hidden w-32 ltr:-mt-8 rtl:-mt-[2.5rem] ltr:-ml-20 rtl:ml-[5rem] text-gray-500 dark:text-blue-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
+                        className="absolute top-0 left-0 z-0 hidden w-32 ltr:-mt-8 rtl:-mt-[1.9rem] ltr:-ml-20 rtl:ml-[2rem] text-gray-500 dark:text-blue-100 lg:w-32 lg:-ml-28 lg:-mt-10 sm:block"
                       >
                         <defs>
                           <pattern
