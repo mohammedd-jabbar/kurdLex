@@ -10,9 +10,6 @@ export default function StepsData({ data, i, first = false, ku = false }) {
       // Cancel any previous speech
       speechSynthesis.cancel();
 
-      console.log(speechSynthesis.getVoices());
-      speechSynthesis.getVoices().forEach((voice) => console.log(voice.name));
-
       const utterance = new SpeechSynthesisUtterance();
       utterance.text = textToRead;
       // utterance.voice = speechSynthesis.getVoices()[4];
@@ -57,7 +54,7 @@ export default function StepsData({ data, i, first = false, ku = false }) {
                 ku && "font-rabar"
               }`}
             >
-              {ku ? data.resKu.word : data.word}
+              {ku ? data?.resKu?.word : data?.word}
             </h2>
           </div>
 
@@ -85,7 +82,7 @@ export default function StepsData({ data, i, first = false, ku = false }) {
                   {!ku && (
                     <AiOutlineSound
                       onClick={() =>
-                        handleAudio(data.definitions?.[i].definition)
+                        handleAudio(data?.definitions?.[i]?.definition)
                       }
                       className="ml-1 inline bg-[#6366f1] text-white dark:text-gray-200 w-5 h-5 rounded-full p-1 cursor-pointer hover:bg-[#6366f1]/90 sm:focus:scale-110 sm:hover:scale-110 sm:active:scale-105 transition"
                     />
@@ -98,8 +95,8 @@ export default function StepsData({ data, i, first = false, ku = false }) {
                   }`}
                 >
                   {ku
-                    ? data.resKu.definitions?.[i].definition
-                    : data.definitions?.[i].definition}
+                    ? data?.resKu?.definitions?.[i]?.definition
+                    : data?.definitions?.[i]?.definition}
                 </p>
               </div>
               <div>

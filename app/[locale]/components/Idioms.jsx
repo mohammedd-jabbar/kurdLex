@@ -40,7 +40,7 @@ export default function Idioms({ data, ku = false }) {
         </div>
         <div className={`${ku ? "text-end" : "text-start"}`}>
           {ku ? (
-            data?.resKu.idioms.length > 0 ? (
+            data?.resKu?.idioms.length > 0 ? (
               data?.resKu?.idioms.map((idiom, i) => {
                 // Check if it's the last iteration
                 const isLastIteration = i === data?.resKu?.idioms.length - 1;

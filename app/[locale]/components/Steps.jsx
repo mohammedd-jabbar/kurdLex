@@ -1,10 +1,9 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import StepsData from "./StepsData";
 import { CgSearchLoading } from "react-icons/cg";
 import { toast } from "sonner";
-import { useInView } from "framer-motion";
 import { useLocale } from "next-intl";
 import { useTranslations } from "next-intl";
 import "./Arrow.css";
@@ -15,9 +14,6 @@ export default function Steps() {
   const data = useSelector((state) => state.dataDictionarySlice.dataDictionary);
   const locale = useLocale();
   const [errorDisplayed, setErrorDisplayed] = useState(false);
-
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
     if (
@@ -61,7 +57,8 @@ export default function Steps() {
 
   return (
     data &&
-    data?.status !== false && (
+    data?.status !== false &&
+    data?.WordNotFound !== true && (
       <>
         <a className="down-arrow" href="#dictionary"></a>
         <div dir="ltr">
@@ -140,46 +137,50 @@ export default function Steps() {
             </div>
           )}
           {/* Word Origin */}
-          <div className="flex flex-col justify-center items-center sm:flex-row w-[80%] mx-auto mb-10 max-sm:space-y-6 sm:space-x-8">
-            <div className="text-center overflow-hidden w-full sm:w-1/2">
-              <div className="flex flex-col hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
-                <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
-                  <>
-                    <div className="mt-2">
-                      <div className="mb-4">
-                        <h1 className="font-bold mb-2 text-xl">WORD ORIGIN</h1>
-                        <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90">
-                          {data?.wordOrigin
-                            ? data?.wordOrigin
-                            : "Sorry, word origin not available!"}
-                        </p>
+          {data?.wordOrigin && (
+            <div className="flex flex-col justify-center items-center sm:flex-row w-[80%] mx-auto mb-10 max-sm:space-y-6 sm:space-x-8">
+              <div className="text-center overflow-hidden w-full sm:w-1/2">
+                <div className="flex flex-col hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
+                  <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
+                    <>
+                      <div className="mt-2">
+                        <div className="mb-4">
+                          <h1 className="font-bold mb-2 text-xl">
+                            WORD ORIGIN
+                          </h1>
+                          <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90">
+                            {data?.wordOrigin
+                              ? data?.wordOrigin
+                              : "Sorry, word origin not available!"}
+                          </p>
+                        </div>
                       </div>
-                    </div>
-                  </>
+                    </>
+                  </div>
+                </div>
+              </div>
+              <div className="text-center overflow-hidden w-full sm:w-1/2">
+                <div className="flex flex-col hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
+                  <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
+                    <>
+                      <div className="mt-2">
+                        <div className="mb-4">
+                          <h1 className="font-bold mb-2 font-rabar text-xl">
+                            ڕەگی وشە
+                          </h1>
+                          <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90 font-rabar">
+                            {data?.resKu?.wordOrigin
+                              ? data?.resKu?.wordOrigin
+                              : "!ببوورە ڕەگی وشە بەردەست نیە"}
+                          </p>
+                        </div>
+                      </div>
+                    </>
+                  </div>
                 </div>
               </div>
             </div>
-            <div className="text-center overflow-hidden w-full sm:w-1/2">
-              <div className="flex flex-col hover:shadow-lg bg-gray-100 border border-gray-200 dark:bg-gray-500 dark:border-gray-700 shadow rounded-md">
-                <div className="flex-grow pl-5 pr-2 rtl:pr-5 rtl:pl-2 mt-6 sm:mt-4 mb-6 dark:text-white">
-                  <>
-                    <div className="mt-2">
-                      <div className="mb-4">
-                        <h1 className="font-bold mb-2 font-rabar text-xl">
-                          ڕەگی وشە
-                        </h1>
-                        <p className="leading-relaxed pl-1.5 text-gray-700 dark:text-white/90 font-rabar">
-                          {data?.resKu.wordOrigin
-                            ? data?.resKu.wordOrigin
-                            : "!ببوورە ڕەگی وشە بەردەست نیە"}
-                        </p>
-                      </div>
-                    </div>
-                  </>
-                </div>
-              </div>
-            </div>
-          </div>
+          )}
         </div>
       </>
     )
