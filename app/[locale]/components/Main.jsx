@@ -100,7 +100,7 @@ export default function Main() {
                       type: "keyframes",
                       stiffness: 160,
                     }}
-                    className={`max-w-lg mb-6 font-sans text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl md:mx-auto dark:text-white rtl:font-rabar rtl:leading-[3rem]`}
+                    className={`max-w-lg mb-6 font-sans text-2xl font-bold tracking-tight text-gray-900 sm:text-4xl md:mx-auto dark:text-white rtl:font-rabar rtl:leading-[2.3rem] sm:rtl:leading-[3rem]`}
                   >
                     <span className="relative inline-block">
                       <svg
