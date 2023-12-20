@@ -81,21 +81,22 @@ export default function StepsData({ data, i, first = false, ku = false }) {
             <div className="mt-2">
               <div className="mb-8">
                 <h1 className={`font-bold mb-1 ${ku && "font-rabar text-xl"}`}>
-                  {ku ? "پێناسە" : "DEFINITION"}
-                </h1>
-                <p
-                  className={`leading-relaxed pl-1.5 text-gray-700 dark:text-white/90 ${
-                    ku && "font-rabar"
-                  }`}
-                >
+                  {ku ? "پێناسە" : "DEFINITION"}{" "}
                   {!ku && (
                     <AiOutlineSound
                       onClick={() =>
                         handleAudio(data.definitions?.[i].definition)
                       }
-                      className="mr-2 bg-[#6366f1] text-white dark:text-gray-200 w-10 h-10 rounded-full p-1 cursor-pointer hover:bg-[#6366f1]/90 focus:scale-110 hover:scale-110 active:scale-105 transition"
+                      className="ml-1 inline bg-[#6366f1] text-white dark:text-gray-200 w-5 h-5 rounded-full p-1 cursor-pointer hover:bg-[#6366f1]/90 sm:focus:scale-110 sm:hover:scale-110 sm:active:scale-105 transition"
                     />
                   )}
+                </h1>
+
+                <p
+                  className={`leading-relaxed pl-1.5 text-gray-700 dark:text-white/90 ${
+                    ku && "font-rabar"
+                  }`}
+                >
                   {ku
                     ? data.resKu.definitions?.[i].definition
                     : data.definitions?.[i].definition}
@@ -118,8 +119,21 @@ export default function StepsData({ data, i, first = false, ku = false }) {
                         {ku
                           ? data?.resKu?.definitions?.[i]?.examples?.[index] ||
                             "ببوورە هیچ نموونەیەک بەردەست نیە!"
-                          : data?.definitions?.[i]?.example?.[index] ||
-                            "Sorry, no examples available!"}
+                          : (
+                              <span>
+                                {data?.definitions?.[i]?.example?.[index]}
+                                {!ku && (
+                                  <AiOutlineSound
+                                    onClick={() =>
+                                      handleAudio(
+                                        data?.definitions?.[i]?.example?.[index]
+                                      )
+                                    }
+                                    className="ml-1 inline bg-[#6366f1] text-white dark:text-gray-200 w-5 h-5 rounded-full p-1 cursor-pointer hover:bg-[#6366f1]/90 sm:focus:scale-110 sm:hover:scale-110 sm:active:scale-105 transition"
+                                  />
+                                )}
+                              </span>
+                            ) || "Sorry, no examples available!"}
                       </p>
                     </li>
                   ))}
