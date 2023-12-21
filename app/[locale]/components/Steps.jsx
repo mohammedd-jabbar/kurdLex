@@ -48,7 +48,7 @@ export default function Steps() {
 
       toast.error(t("word not found"));
     }
-  }, [data, errorDisplayed, locale, t]);
+  }, [data, errorDisplayed, locale]);
 
   const numberOfDefinitions = data?.definitions?.length ?? 0;
 
