@@ -10,7 +10,8 @@ KurdLex isn't just your average dictionary - it's a powerful learning tool desig
 ## Index
 
 - [About](#about)
-- [Features](#Features)
+- [Features](#features)
+- [Availability](#availability)
 - [Technology Stack](#technology-stack)
 - [Installation](#installation)
 - [License](#license)
@@ -37,6 +38,21 @@ Kurdlex: English fluency with KurdLex, Discover more than just definitions with 
   <img src="/screenshots/7.png">
 - Idiomatic Gems: Unlock the idioms' hidden language! Uncover cultural vibes and hidden meanings.
   <img src="/screenshots/8.png">
+
+
+## Availability
+
+### Free for Non-Commercial Educational Apps
+
+##### We believe in open access to knowledge! The KurdLex API is free to use for non-commercial educational apps.
+
+### for Commercial Apps
+
+##### For sustainable development, we offer paid API access options for commercial apps.
+
+##### Contact us to discuss API access and usage:
+
+    Telegram: https://t.me/Mohammed_jabbar
 
 ## Technology Stack
 
