@@ -1,0 +1,8 @@
+git filter-branch --tree-filter 'rm -f filePath' 
+or
+git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch filePath'
+
+git push --force
+
+
+After Each Delete: git filter-branch -f --index-filter 'git rm --cached --ignore-unmatch Rakefile'
